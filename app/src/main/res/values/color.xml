@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="fundoPrincipal">#ffffff</color>
+    <color name="botNavigationPrincipal">#333333</color>
+    <color name="fundoIndex">#ffffff</color>
+    <color name="apresentacao_text_view">#ffffff</color>
+    <color name="activity_inicial_carregamento_fundo">#000000</color>
+    <color name="activity_principal_background_color"> #aa0548</color>
+    <color name="activity_principal_background_color_off"> #38081b</color>
+    <color name="activity_sobre_nos_background_color"> #aa0548</color>
+    <color name="activity_principal_progress_bar_color">#ff1070</color>
+
+</resources>

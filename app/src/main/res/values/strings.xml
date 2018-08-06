@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">NoiseAlert</string>
+
+
+    <string name="apresentacao_text_view_top">Não deixe nada atrapalhar você</string>
+    <string name="principal_text_view_ligado">Microfone Ligado</string>
+    <string name="principal_text_view_desligado"> Microfone Desligado</string>
+    <string name="sobre_nos_subtitulo">Total controle sobre a  sonoridade do seu ambiente</string>
+
+    <string name="sobre_nos_conteudo">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</string>
+    <string name="activity_configuracoes_titulo">Configurações</string>
+
+    <string name="activity_configuracoes_modo_som_titulo">Modo de Som </string>
+
+    <string name="activity_configuracoes_modo_som_subtitulo">Padrão</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_alternativa">Alternativa </string>
+    <string name="activity_configuracoes_modo_som_subtitulo_crazy">Crazy</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_personalizado">Personalizado</string>
+
+    <string name="activity_configuracoes_vibrar">Vibrar enquanto toca</string>
+    <string name="activity_configuracoes_volume">Volume</string>
+
+    <string name="activity_configuracoes_buscar_toque">Buscar Toque</string>
+
+
+
+</resources>
