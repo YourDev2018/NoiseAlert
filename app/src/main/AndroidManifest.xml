@@ -25,7 +25,7 @@
         </activity>
         <activity android:name=".Activity.Activity_Apresentacao"
             />
-        <activity android:name=".Activity.Activity_Principal" />
+        <activity android:name=".Activity.Activity_Principal" android:screenOrientation="portrait" />
         <activity android:name=".Activity.Activity_Sobre_Nos" />
         <activity android:name=".Activity.Activity_Configuracoes"/>
       <!--  <service  android:name=".Class.VibratorService"/>-->

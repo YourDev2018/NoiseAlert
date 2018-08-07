@@ -532,7 +532,8 @@ class Activity_Principal : AppCompatActivity() {
                         return
 
                     mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
-                    vibrator = mp.startVibrate(applicationContext,vibrator)
+                    if (getVibrate())
+                        vibrator = mp.startVibrate(applicationContext,vibrator)
                     //startCronometro()
                     list = ArrayList()
 
@@ -626,6 +627,7 @@ class Activity_Principal : AppCompatActivity() {
    private fun stopRecorder() {
 
        vibrator = mp.pauseVibrator(vibrator)
+       auxStop = false
 
         try {
             mRecorder.stop()
