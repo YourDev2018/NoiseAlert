@@ -1,5 +1,6 @@
 package yourdev.noisealert.Activity
 
+import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.media.AudioManager
@@ -12,6 +13,12 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity__configuracoes.*
 import yourdev.noisealert.Class.FuncSQLiteDB
 import yourdev.noisealert.R
+import android.content.ContentResolver
+import android.media.MediaRecorder
+import android.support.v4.app.ActivityCompat
+import android.view.View
+import yourdev.noisealert.Class.ManagePermissions
+
 
 @Suppress("UNREACHABLE_CODE")
 class Activity_Configuracoes : AppCompatActivity(){
@@ -30,6 +37,15 @@ class Activity_Configuracoes : AppCompatActivity(){
     lateinit var textViewVolume: TextView
     lateinit var constraintLayoutBuscar: ConstraintLayout
     lateinit var textViewBuscar: TextView
+    lateinit var constraintLayoutGravar: ConstraintLayout
+    lateinit var butGravar: ImageView
+    lateinit var textViewGravar: ImageView
+
+    private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+    private lateinit var managePermissions: ManagePermissions
+
+    private var mFileName = ""
+    var mRecorder = MediaRecorder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +71,44 @@ class Activity_Configuracoes : AppCompatActivity(){
         switchVibrar.setOnClickListener{setSwitch()}
 
         textViewVolume.setOnClickListener { volumeControlStream = 10}
-        constraintLayoutVolume.setOnClickListener { volumeControlStream = AudioManager.STREAM_MUSIC;  }
+        constraintLayoutVolume.setOnClickListener { volumeControlStream = AudioManager.STREAM_MUSIC; }
+
+        constraintLayoutBuscar.setOnClickListener { /*buscarMusica()*/ }
+        textViewBuscar.setOnClickListener{ /*buscarMusica()*/ }
+
+        butGravar.setOnLongClickListener{ return@setOnLongClickListener false}
+
+
+
+
 
     }
+/*
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            REQUEST_RECORD_AUDIO_PERMISSION ->{
+                isPermissionsGranted = managePermissions
+                        .processPermissionsResult(requestCode,permissions,grantResults)
+
+                if(isPermissionsGranted){
+                    Log.i("NoiseAlert_Console","Permissão ok")
+                    if(getPhoneState()){
+                        Log.i("NoiseAlert_Console","State ok")
+                        getModoMusica()
+                        recuperarSensibilidade()
+                        efeitosOn()
+                        startRecorder()
+                    }else{
+                        getModoMusica()
+                        efeitosOff()
+
+                    }
+                }
+            }
+        }
+    }
+
+    */
 
 
     fun initializeUi(){
@@ -78,6 +129,10 @@ class Activity_Configuracoes : AppCompatActivity(){
 
         constraintLayoutBuscar = findViewById(R.id.activity_buscar_toque_constraint)
         textViewBuscar = findViewById(R.id.activity_configuracoes_text_view_buscar_toque)
+
+        constraintLayoutGravar = findViewById(R.id.activity_configuracoes_contraint_layout_gravar_toque)
+        textViewBuscar = findViewById(R.id.activity_configuracoes_text_view_buscar_toque)
+        butGravar = findViewById(R.id.activity_configuracoes_but_gravar_toque)
 
 
     }
@@ -201,5 +256,59 @@ class Activity_Configuracoes : AppCompatActivity(){
         setModoSom()
     }
 
+    private fun gravarAudio(){
+        mFileName = externalCacheDir.absolutePath + "personalizada.3gp"
+
+        mRecorder = MediaRecorder()
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mFileName)
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+        Log.i("mFileName", mFileName)
+
+        try {
+            mRecorder.prepare()
+        } catch (ioe: java.io.IOException) {
+            android.util.Log.e("[Monkey]", "IOException: " + android.util.Log.getStackTraceString(ioe))
+
+        } catch (e: java.lang.SecurityException) {
+            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
+        }
+
+        try {
+
+            mRecorder.start()
+            Log.i("Console_Noise_Alert","Start Ok")
+
+        } catch (e: java.lang.SecurityException) {
+            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
+
+
+        } catch (e: IllegalStateException) {
+            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
+
+            //   startRecorder()
+        }
+    }
+
+/*
+    private fun buscarMusica(){
+
+
+
+
+        val list = listOf<String>(
+                Manifest.permission.RECORD_AUDIO
+
+        )
+
+        managePermissions = ManagePermissions(this,list,REQUEST_RECORD_AUDIO_PERMISSION)
+        ActivityCompat.requestPermissions(this, permissions,REQUEST_RECORD_AUDIO_PERMISSION)
+
+        val musicResolver = contentResolver
+        val musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+        val musicCursor = musicResolver.query(musicUri, null, null, null, null)
+    }
+*/
 
 }

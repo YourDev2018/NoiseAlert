@@ -93,12 +93,21 @@ public class MyMediaPlayer {
         mp =null;
     }
 
+    public boolean isPlaying(MediaPlayer mp){
+
+        try {
+            return mp.isPlaying();
+        }catch (NullPointerException i){
+            return false;
+        }
+
+
+
+    }
+
 
     public Vibrator startVibrate(Context context, Vibrator vibrator){
 
-        if (vibrator.hasVibrator()){
-            return vibrator;
-        }
 
         vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 

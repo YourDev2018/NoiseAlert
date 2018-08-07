@@ -56,6 +56,8 @@ class Activity_Principal : AppCompatActivity() {
     private var modoSom = ""
     private var onOffDB = 1
     private var mFileName = ""
+    private var contVezes = 0
+    private var play_on = false
 
 
     lateinit var strURL: String
@@ -63,6 +65,10 @@ class Activity_Principal : AppCompatActivity() {
     internal val updater: Runnable = Runnable { updateTv() }
     internal val mHandler = Handler()
     lateinit var runner: Thread
+
+    internal val cronometro: Runnable = Runnable { startCronometro() }
+    internal val mHandlerCronometro = Handler()
+    lateinit var runnerCronometro: Thread
 
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
     var isPermissionsGranted = false
@@ -73,8 +79,8 @@ class Activity_Principal : AppCompatActivity() {
     var list =  ArrayList<Double>()
     var TEMPO_MEDIO = 0
     var RECORD_AUDIO = 0
-    var record_on = false
 
+    var auxStop = false
     private var mp = MyMediaPlayer()
     var mPlayer = MediaPlayer()
 
@@ -191,6 +197,13 @@ class Activity_Principal : AppCompatActivity() {
             runner = object : Thread() {
                 override fun run() {
                     while (runner != null) {
+
+                        if (auxStop){
+                            auxStop = false
+                            Thread.sleep(4000)
+                            mp.pauseMusic(mPlayer)
+                            continue
+                        }
 
                         mHandler.post(updater)
                         try {
@@ -476,11 +489,14 @@ class Activity_Principal : AppCompatActivity() {
             return
         }
 */
+        contVezes += 1
+
         val auxAmplitude = getAmplitude()
         if (auxAmplitude == 0.0) {
             list = ArrayList()
             return
         }
+
 
         list.add(auxAmplitude)
 
@@ -500,8 +516,6 @@ class Activity_Principal : AppCompatActivity() {
                 Log.i("Alarme","teste for " + aux)
                 if (aux < TEMPO_MEDIO) {
 
-
-
                     mPlayer = mp.pauseMusic(mPlayer)
                     Log.i("Alarme","Pausado " )
                     list = ArrayList()
@@ -519,8 +533,11 @@ class Activity_Principal : AppCompatActivity() {
 
                     mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
                     vibrator = mp.startVibrate(applicationContext,vibrator)
-
+                    //startCronometro()
                     list = ArrayList()
+
+                    auxStop = true
+
                     return
 
                 }catch (i: IllegalStateException){
@@ -681,5 +698,19 @@ class Activity_Principal : AppCompatActivity() {
 
         return 0
     }
+    private fun startCronometro() {
+        object : Runnable {
+            override fun run() {
 
+                val initialTime = System.currentTimeMillis()
+                while ((initialTime - System.currentTimeMillis()).toInt() != 4000){
+                    Log.i("Cronometro_test","Contando...")
+                    Thread.sleep(1000)
+
+                }
+              //  Log.i("Cronometro_test",System.currentTimeMillis().toString())
+
+            }
+        }
+    }
 }
