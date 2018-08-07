@@ -3,15 +3,20 @@ package yourdev.noisealert.Activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Service
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.ActivityCompat
 import android.util.Log
@@ -25,6 +30,7 @@ import android.support.annotation.NonNull
 import android.support.v4.content.ContextCompat
 import yourdev.noisealert.Class.ManagePermissions
 import yourdev.noisealert.Class.MyMediaPlayer
+import yourdev.noisealert.Class.VibratorService
 
 
 class Activity_Principal : AppCompatActivity() {
@@ -65,15 +71,14 @@ class Activity_Principal : AppCompatActivity() {
 
     var mRecorder = MediaRecorder()
     var list =  ArrayList<Double>()
-    var TEMPO_MEDIO = 90
+    var TEMPO_MEDIO = 0
     var RECORD_AUDIO = 0
     var record_on = false
 
     private var mp = MyMediaPlayer()
+    var mPlayer = MediaPlayer()
 
-    internal lateinit var mPlayer: MediaPlayer
-
-
+    lateinit var vibrator: Vibrator
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +86,6 @@ class Activity_Principal : AppCompatActivity() {
         setContentView(R.layout.activity_principal)
 
         initializeUi()
-
 
         //recuperarDados()
         val list = listOf<String>(
@@ -92,9 +96,11 @@ class Activity_Principal : AppCompatActivity() {
         managePermissions = ManagePermissions(this,list,REQUEST_RECORD_AUDIO_PERMISSION)
         ActivityCompat.requestPermissions(this, permissions,REQUEST_RECORD_AUDIO_PERMISSION)
 
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
+      //  mPlayer = MediaPlayer()
         // temos que rever onde esse recebimento de configuração de toque é mais apropriado
-        mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_hotline_bling)
+
 
         // efeito botão ligado/desligado
         onOff.setOnClickListener {
@@ -204,8 +210,9 @@ class Activity_Principal : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+       // Log.i("Console_Noise_Alert_toq","onResume")
+        getToque()
 
-       // recuperarDados()
 
     }
 
@@ -423,6 +430,24 @@ class Activity_Principal : AppCompatActivity() {
         }
     }
 
+    private fun getSensibilidade(): Int{
+        val sql = FuncSQLiteDB(applicationContext)
+        val colunas = arrayOf("sensibilidade")
+        val cursor  = sql.getDados("UserConfig",colunas)
+
+        try {
+            cursor.moveToFirst()
+            Log.i("Console_Noise_Alert_sen",cursor.getString(cursor.getColumnIndex("sensibilidade")).trim())
+            return cursor.getString(cursor.getColumnIndex("sensibilidade")).trim().toInt()
+
+            //  progressBarPorcentagemBot.progress = sensibilidade
+
+        }catch (i: RuntimeException){
+            Toast.makeText(applicationContext,"Erro na leitura de dados",Toast.LENGTH_SHORT).show()
+            return 90
+        }
+    }
+
     private fun setSensibilidade(){
         val sql = FuncSQLiteDB(applicationContext)
 
@@ -444,9 +469,6 @@ class Activity_Principal : AppCompatActivity() {
 
 
 
-
-
-
     @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun updateTv() {
 /*
@@ -454,21 +476,31 @@ class Activity_Principal : AppCompatActivity() {
             return
         }
 */
-        list.add(getAmplitude())
+        val auxAmplitude = getAmplitude()
+        if (auxAmplitude == 0.0) {
+            list = ArrayList()
+            return
+        }
+
+        list.add(auxAmplitude)
 
         if (list.size < 4) {
-            //     mPlayer = mp.pauseMusic(mPlayer);
+            //mPlayer = mp.pauseMusic(mPlayer);
             return
         } else {
 
             var result = 0.0
             var i = 0
+            if (TEMPO_MEDIO == 0)
+                TEMPO_MEDIO = getSensibilidade()
             while(i < 4) {
 
 
                 val aux = list.get(i) as Double
                 Log.i("Alarme","teste for " + aux)
                 if (aux < TEMPO_MEDIO) {
+
+
 
                     mPlayer = mp.pauseMusic(mPlayer)
                     Log.i("Alarme","Pausado " )
@@ -480,10 +512,21 @@ class Activity_Principal : AppCompatActivity() {
 
             }
             if (result / 4 >= TEMPO_MEDIO) {
+                try{
+                    //Log.i("Alarme","Tocando")
+                    if(mPlayer.isPlaying)
+                        return
 
-                Log.i("Alarme","Tocando")
-                mPlayer = mp.playMusic(applicationContext, mPlayer)
-                list = ArrayList()
+                    mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
+                    vibrator = mp.startVibrate(applicationContext,vibrator)
+
+                    list = ArrayList()
+                    return
+
+                }catch (i: IllegalStateException){
+                    mPlayer = mp.pauseMusic(mPlayer)
+                }
+
             }else{
                 mPlayer = mp.pauseMusic(mPlayer)
                 list = ArrayList()
@@ -511,7 +554,10 @@ class Activity_Principal : AppCompatActivity() {
 
         }
 
-        Log.i("Porcentagem",porcentagem.toString())
+        if (porcentagem.toString() == "-Infinity")
+            return 0.0
+
+      //  Log.i("Porcentagem",porcentagem.toString())
 
         return porcentagem
 
@@ -562,14 +608,18 @@ class Activity_Principal : AppCompatActivity() {
 
    private fun stopRecorder() {
 
+       vibrator = mp.pauseVibrator(vibrator)
+
         try {
             mRecorder.stop()
             mRecorder.release()
             mRecorder = MediaRecorder()
 
-            mp.pauseMusic(mPlayer)
-        }catch (i: IllegalStateException){
-
+            mPlayer = mp.pauseMusic(mPlayer)
+        }catch (i: IllegalStateException ){
+            mPlayer = mp.pauseMusic(mPlayer)
+        }catch (i: RuntimeException){
+            mPlayer = mp.pauseMusic(mPlayer)
         }
 
     }
@@ -596,11 +646,40 @@ class Activity_Principal : AppCompatActivity() {
 
         try {
             cursor.moveToFirst()
-            Log.i("Console_Noise_Alert_ms",cursor.getString(cursor.getColumnIndex("modo_som")).trim())
+            Log.i("Console_Noise_Alert_ms","Noise:"+ cursor.getString(cursor.getColumnIndex("modo_som")).trim())
             return cursor.getString(cursor.getColumnIndex("modo_som")).trim()
         }catch (i: RuntimeException){
+            Log.i("Console_Noise_Alert_toq", "Entrou no Runtime")
             return ""
         }
+    }
+
+
+    private fun getToque(): Int{
+
+        val aux = getModoSom().toUpperCase()
+
+        if (aux == applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo).toString().toUpperCase()) {
+        //    mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_hotline_bling)
+            Log.i("Console_Noise_Alert","Entrou Padrão")
+            return R.raw.toque_hotline_bling
+        }else
+            if (aux == applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo_alternativa).toString().toUpperCase()) {
+              //  mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_alternativo)
+                Log.i("Console_Noise_Alert", "Entrou Alternativo")
+                return  R.raw.toque_alternativo
+            }else
+                if (aux == applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo_crazy).toString().toUpperCase()) {
+                    return  R.raw.toque_alternativo
+                }else
+                    if (aux == "PERSONALIZADA") {
+                        if (getUrl() != "") {
+                            return 0
+                        }
+                    }
+
+
+        return 0
     }
 
 }

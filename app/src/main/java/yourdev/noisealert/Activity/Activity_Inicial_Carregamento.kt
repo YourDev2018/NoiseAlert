@@ -44,15 +44,21 @@ class Activity_Inicial_Carregamento : AppCompatActivity() {
             contentValues.put("onOff",1)
             contentValues.put("volume",100)
             contentValues.put("sensibilidade",70)
-            contentValues.put("modo_som","padrao")
+            contentValues.put("modo_som",applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo).toString())
             contentValues.put("vibracao",1)
             contentValues.put("urlMusic","")
             contentValues.put("nameMusic","")
             contentValues.put("phoneState",1)
 
-            sql.setDados(contentValues,"UserConfig")
+            if(!sql.setDados(contentValues,"UserConfig")){
+                if (sql.upadateDados(contentValues,"UserConfig","id=1"))
+                    mHandler.postDelayed({ startActivity(Intent(this, Activity_Apresentacao::class.java))},2000)
+            }else{
+                    mHandler.postDelayed({ startActivity(Intent(this, Activity_Apresentacao::class.java))},2000)
 
-            mHandler.postDelayed({ startActivity(Intent(this, Activity_Apresentacao::class.java))},2000)
+            }
+
+
 
         }
 

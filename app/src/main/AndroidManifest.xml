@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="yourdev.noisealert">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -22,10 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Activity_Apresentacao" />
+        <activity android:name=".Activity.Activity_Apresentacao"
+            />
         <activity android:name=".Activity.Activity_Principal" />
         <activity android:name=".Activity.Activity_Sobre_Nos" />
-        <activity android:name=".Activity.Activity_Configuracoes"></activity>
+        <activity android:name=".Activity.Activity_Configuracoes"/>
+      <!--  <service  android:name=".Class.VibratorService"/>-->
     </application>
 
 </manifest>

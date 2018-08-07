@@ -10,6 +10,7 @@ class VibratorService : Service() {
 
     lateinit var vibrator: Vibrator
 
+
     override fun onBind(intent: Intent?): IBinder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -24,9 +25,7 @@ class VibratorService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         return super.onStartCommand(intent, flags, startId)
 
-
-
-        vibrator.vibrate(2000)
+        vibrator.vibrate(4000)
 
     }
 

@@ -7,7 +7,11 @@
     <string name="principal_text_view_desligado"> Microfone Desligado</string>
     <string name="sobre_nos_subtitulo">Total controle sobre a  sonoridade do seu ambiente</string>
 
-    <string name="sobre_nos_conteudo">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur</string>
+    <string name="sobre_nos_conteudo"> O Noise Alert nasceu da necessidade de se controlar o som em ambientes que precisam de controle do ruído, tais como Bibliotecas, Salas de Aula, Salas de Reunião e outros.
+\n \n
+Com o Noise Alert, é possível definir a altura limite do ambiente, e controlar os ânimos de quem os frequenta, de forma independente e sutil.
+\n  \n
+O idealizador do app foi Gustavo Mota, empreendedor e fundador da empresa WeDoLogos, que em parceria com a empresa de tecnologia YourDev, transformou a ideia em realidade.</string>
     <string name="activity_configuracoes_titulo">Configurações</string>
 
     <string name="activity_configuracoes_modo_som_titulo">Modo de Som </string>
