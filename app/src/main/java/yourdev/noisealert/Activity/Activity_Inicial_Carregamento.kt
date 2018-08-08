@@ -49,6 +49,7 @@ class Activity_Inicial_Carregamento : AppCompatActivity() {
             contentValues.put("urlMusic","")
             contentValues.put("nameMusic","")
             contentValues.put("phoneState",1)
+            contentValues.put("tempoDeToque",4)
 
             if(!sql.setDados(contentValues,"UserConfig")){
                 if (sql.upadateDados(contentValues,"UserConfig","id=1"))

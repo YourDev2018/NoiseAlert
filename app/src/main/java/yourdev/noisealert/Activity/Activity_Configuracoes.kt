@@ -76,7 +76,7 @@ class Activity_Configuracoes : AppCompatActivity(){
         constraintLayoutBuscar.setOnClickListener { /*buscarMusica()*/ }
         textViewBuscar.setOnClickListener{ /*buscarMusica()*/ }
 
-        butGravar.setOnLongClickListener{ return@setOnLongClickListener false}
+//        butGravar.setOnLongClickListener{ return@setOnLongClickListener false}
 
 
 
@@ -132,7 +132,7 @@ class Activity_Configuracoes : AppCompatActivity(){
 
         constraintLayoutGravar = findViewById(R.id.activity_configuracoes_contraint_layout_gravar_toque)
         textViewBuscar = findViewById(R.id.activity_configuracoes_text_view_buscar_toque)
-        butGravar = findViewById(R.id.activity_configuracoes_but_gravar_toque)
+      //  butGravar = findViewById(R.id.activity_configuracoes_but_gravar_toque)
 
 
     }

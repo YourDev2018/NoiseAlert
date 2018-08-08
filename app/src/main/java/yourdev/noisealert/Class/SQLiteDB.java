@@ -23,7 +23,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     public final String TABELA = "UserConfig";
 
 
-    private static final int VERSAO = 3;
+    private static final int VERSAO = 6;
 
     public SQLiteDB(Context context) {
         super(context, NOME_BANCO,null,VERSAO);
@@ -33,7 +33,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String script = "CREATE TABLE "+ TABELA + " (id integer primary key, onOff integer, volume integer, sensibilidade integer, modo_som text, vibracao int, urlMusic text, nameMusic text, phoneState integer )";
+        String script = "CREATE TABLE "+ TABELA + " (id integer primary key, onOff integer, volume integer, sensibilidade integer, modo_som text, vibracao int, urlMusic text, nameMusic text, phoneState integer, tempoDeToque integer)";
       //  String script = "CREATE TABLE "+ TABELA + " (id integer primary key , nameMusic text )";
 
         db.execSQL(script);
@@ -42,7 +42,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       //  db.execSQL("DROP TABLE IF EXISTS " + TABELA);
+      //  db.execSQL("DROP TABLE IF EXISTS " + TABELA);
         onCreate(db);
 
     }

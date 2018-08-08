@@ -23,6 +23,7 @@ O idealizador do app foi Gustavo Mota, empreendedor e fundador da empresa WeDoLo
 
     <string name="activity_configuracoes_vibrar">Vibrar enquanto toca</string>
     <string name="activity_configuracoes_volume">Volume</string>
+    <string name="activity_configuracoes_duracao_alarme">Tempo de toque</string>
 
     <string name="activity_configuracoes_buscar_toque">Buscar Toque</string>
 

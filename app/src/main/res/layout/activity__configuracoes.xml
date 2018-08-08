@@ -33,6 +33,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activity_configuracoes_contraint_layout_gravar_toque"
         android:layout_width="0dp"
@@ -56,19 +58,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3" />
 
-        <ImageView
-            android:id="@+id/activity_configuracoes_but_gravar_toque"
-            android:layout_width="56dp"
-            android:layout_height="43dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/activity_principal_phone" />
     </android.support.constraint.ConstraintLayout>
+
+
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activity_configuracoes_vibracao"
@@ -95,9 +87,9 @@
 
         <Switch
             android:id="@+id/activity_configuracoes_switch_vibracao"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="20dp"
 
             android:theme="@style/SwitchCompatStyle"
             app:layout_constraintBottom_toBottomOf="@+id/activity_configuracoes_text_view_vibracao"
@@ -158,7 +150,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="8dp"
-            android:text="@string/activity_configuracoes_volume"
+            android:text="@string/activity_configuracoes_duracao_alarme"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -263,8 +255,8 @@
             android:id="@+id/activity_configuracoes_modo_som_image_view"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/activity_configuracoes_modo_som_subtitulo"
             app:layout_constraintEnd_toEndOf="parent"

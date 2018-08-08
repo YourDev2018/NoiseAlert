@@ -3,34 +3,24 @@ package yourdev.noisealert.Activity
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Service
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
-import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment.getExternalStorageDirectory
 import android.os.Handler
-import android.os.VibrationEffect
 import android.os.Vibrator
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.ActivityCompat
 import android.util.Log
-import android.webkit.PermissionRequest
-import android.webkit.WebView
 import android.widget.*
 import yourdev.noisealert.Class.FuncSQLiteDB
 import yourdev.noisealert.R
 import java.util.ArrayList
-import android.support.annotation.NonNull
-import android.support.v4.content.ContextCompat
 import yourdev.noisealert.Class.ManagePermissions
 import yourdev.noisealert.Class.MyMediaPlayer
-import yourdev.noisealert.Class.VibratorService
 
 
 class Activity_Principal : AppCompatActivity() {
@@ -66,9 +56,6 @@ class Activity_Principal : AppCompatActivity() {
     internal val mHandler = Handler()
     lateinit var runner: Thread
 
-    internal val cronometro: Runnable = Runnable { startCronometro() }
-    internal val mHandlerCronometro = Handler()
-    lateinit var runnerCronometro: Thread
 
     private val REQUEST_RECORD_AUDIO_PERMISSION = 200
     var isPermissionsGranted = false
@@ -85,6 +72,8 @@ class Activity_Principal : AppCompatActivity() {
     var mPlayer = MediaPlayer()
 
     lateinit var vibrator: Vibrator
+
+    var tempoDeToque = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -193,14 +182,14 @@ class Activity_Principal : AppCompatActivity() {
         // ir para config
         config.setOnClickListener { startActivity(Intent(this, Activity_Configuracoes::class.java)) }
 
-
+            tempoDeToque = getTempoToque()
             runner = object : Thread() {
                 override fun run() {
                     while (runner != null) {
 
                         if (auxStop){
                             auxStop = false
-                            Thread.sleep(4000)
+                            Thread.sleep((tempoDeToque*1000).toLong())
                             mp.pauseMusic(mPlayer)
                             continue
                         }
@@ -225,6 +214,7 @@ class Activity_Principal : AppCompatActivity() {
         super.onResume()
        // Log.i("Console_Noise_Alert_toq","onResume")
         getToque()
+        tempoDeToque = getTempoToque()
 
 
     }
@@ -531,9 +521,12 @@ class Activity_Principal : AppCompatActivity() {
                     if(mPlayer.isPlaying)
                         return
 
-                    mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
-                    if (getVibrate())
-                        vibrator = mp.startVibrate(applicationContext,vibrator)
+
+                    if (getVibrate()) {
+                        vibrator = mp.startVibrate(applicationContext, vibrator, (tempoDeToque * 1000).toLong())
+                        mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
+                    }else
+                        mPlayer = mp.playMusic(applicationContext, mPlayer, getToque())
                     //startCronometro()
                     list = ArrayList()
 
@@ -680,7 +673,7 @@ class Activity_Principal : AppCompatActivity() {
 
         if (aux == applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo).toString().toUpperCase()) {
         //    mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_hotline_bling)
-            Log.i("Console_Noise_Alert","Entrou Padrão")
+            Log.i("Console_Noise_Alert","Entrou Padrão getToque")
             return R.raw.toque_hotline_bling
         }else
             if (aux == applicationContext.getString(R.string.activity_configuracoes_modo_som_subtitulo_alternativa).toString().toUpperCase()) {
@@ -700,19 +693,19 @@ class Activity_Principal : AppCompatActivity() {
 
         return 0
     }
-    private fun startCronometro() {
-        object : Runnable {
-            override fun run() {
+    private fun getTempoToque(): Int{
+        val sql = FuncSQLiteDB(applicationContext)
+        val colunas = arrayOf("tempoDeToque")
+        val cursor  = sql.getDados("UserConfig",colunas)
 
-                val initialTime = System.currentTimeMillis()
-                while ((initialTime - System.currentTimeMillis()).toInt() != 4000){
-                    Log.i("Cronometro_test","Contando...")
-                    Thread.sleep(1000)
-
-                }
-              //  Log.i("Cronometro_test",System.currentTimeMillis().toString())
-
-            }
+        try {
+            cursor.moveToFirst()
+        //    Log.i("Console_Noise_Alert_ms","Noise:"+ cursor.getString(cursor.getColumnIndex("tempoDeToque")).trim())
+            return cursor.getString(cursor.getColumnIndex("tempoDeToque")).toInt()
+        }catch (i: RuntimeException){
+            Log.i("Console_Noise_Alert_tmt", "Entrou no Runtime")
+            return 4
         }
     }
+
 }

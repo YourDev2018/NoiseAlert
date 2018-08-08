@@ -106,13 +106,13 @@ public class MyMediaPlayer {
     }
 
 
-    public Vibrator startVibrate(Context context, Vibrator vibrator){
+    public Vibrator startVibrate(Context context, Vibrator vibrator, Long tempoToque){
 
 
         vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            vibrator.vibrate(VibrationEffect.createOneShot(4000,VibrationEffect.DEFAULT_AMPLITUDE));
+            vibrator.vibrate(VibrationEffect.createOneShot(tempoToque,VibrationEffect.DEFAULT_AMPLITUDE));
         else
             vibrator.vibrate(4000);
 
