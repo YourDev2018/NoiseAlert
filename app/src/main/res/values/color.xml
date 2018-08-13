@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#38081b</color>
+    <color name="colorPrimaryDark">#38081b</color>
     <color name="colorAccent">#FF4081</color>
 
 
@@ -14,5 +14,6 @@
     <color name="activity_principal_background_color_off"> #38081b</color>
     <color name="activity_sobre_nos_background_color"> #aa0548</color>
     <color name="activity_principal_progress_bar_color">#ff1070</color>
+    <color name="activity_principal_fundo_new">#ffffff</color>
 
 </resources>

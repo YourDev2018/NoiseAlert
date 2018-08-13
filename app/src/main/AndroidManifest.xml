@@ -15,8 +15,8 @@
         android:roundIcon="@mipmap/logo_noise_alert"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Activity.Activity_Inicial_Carregamento">
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.ActivityPrincipal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,8 @@
         <activity android:name=".Activity.Activity_Principal" android:screenOrientation="portrait" />
         <activity android:name=".Activity.Activity_Sobre_Nos" android:screenOrientation="portrait"/>
         <activity android:name=".Activity.Activity_Configuracoes" android:screenOrientation="portrait"/>
-      <!--  <service  android:name=".Class.VibratorService"/>-->
+
+        <!--  <service  android:name=".Class.VibratorService"/>-->
     </application>
 
 </manifest>
