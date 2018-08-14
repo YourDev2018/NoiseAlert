@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-        <shape
-            xmlns:android="http://schemas.android.com/apk/res/android"
 
-            android:shape="oval">
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:shape="oval">
+<ripple android:color="#000"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+
+
 
             <solid
                 android:color="@color/activity_principal_fundo_new" />
@@ -13,4 +18,9 @@
             <size
                 android:width="172dp"
                 android:height="174dp"/>
-        </shape>
+
+</shape>
+
+
+
+
