@@ -26,6 +26,16 @@ O idealizador do app foi Gustavo Mota, empreendedor e fundador da empresa WeDoLo
     <string name="activity_configuracoes_duracao_alarme">Tempo de toque</string>
 
     <string name="activity_configuracoes_buscar_toque">Buscar Toque</string>
+    <string name="activity_configuracoes_gravar_toque">Gravar Toque</string>
+
+    <string name="activity_configuracoes_buscar_toque_pop_up">O toque que vc buscou</string>
+    <string name="activity_configuracoes_gravar_toque_pop_up">O Toque que você gravou</string>
+
+    <string name="activity_configuracoes_tempo_toque">Tempo de Toque</string>
+    <string name="dialog_toque_salvo">Seu toque está salvo em Modo de som.</string>
+
+    <string name="sobre_nos">Sobre nós</string>
+
 
 
 

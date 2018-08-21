@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Modo de som"
+
+        android:textColor="@color/dialog_titulo"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_ok"
+        android:layout_width="96dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/act_settings_dialog_ripple_ok"
+        android:gravity="center"
+        android:text="Ok"
+        android:textColor="#f77062"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_cancelar"
+        android:layout_width="96dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/act_settings_dialog_ripple_ok"
+        android:gravity="center"
+        android:text="Cancelar"
+        android:textColor="#808080"
+        app:layout_constraintEnd_toStartOf="@+id/dialog_modo_som_tv_ok"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_tv_ok" />
+
+    <SeekBar
+        android:id="@+id/dialog_tempo_toque_seek_bar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="101dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+
+
+        android:layout_marginTop="8dp"
+        android:max="10"
+        android:progress="5"
+        android:splitTrack="false"
+        android:theme="@style/MySeekBar"
+        android:thumb="@drawable/thumb_teste"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
+        android:text="TextView"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dialog_tempo_toque_seek_bar" />
+
+
+</android.support.constraint.ConstraintLayout>

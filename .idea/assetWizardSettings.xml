@@ -19,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_mic_off" />
-                            <entry key="sourceFile" value="C:\Users\morgg\AndroidsStudioProjects\NoiseAlert\app\src\main\res\ic-mic-off-copy.svg" />
+                            <entry key="outputName" value="ic_carousel_50" />
+                            <entry key="sourceFile" value="C:\Users\morgg\AndroidsStudioProjects\NoiseAlert\app\src\main\res\ic-50.svg" />
                           </map>
                         </option>
                       </PersistentState>

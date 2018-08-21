@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="18dp"
+    android:background="@color/dialog_background">
+
+    <RadioButton
+        android:id="@+id/dialog_modo_som_radio_gravou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="11dp"
+        android:theme="@style/MyRaidoButtonTwo"
+
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_modo_som_radio_buscar" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_gravou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/activity_configuracoes_gravar_toque_pop_up"
+        android:textColor="#414852"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_modo_som_radio_gravou"
+        app:layout_constraintStart_toEndOf="@+id/dialog_modo_som_radio_gravou"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_radio_gravou" />
+
+    <RadioButton
+        android:id="@+id/dialog_modo_som_radio_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="11dp"
+        android:theme="@style/MyRaidoButtonTwo"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_modo_som_radio_crazy" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/activity_configuracoes_buscar_toque_pop_up"
+        android:textColor="#414852"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_modo_som_radio_buscar"
+        app:layout_constraintStart_toEndOf="@+id/dialog_modo_som_radio_buscar"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_radio_buscar" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_crazy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/activity_configuracoes_modo_som_subtitulo_crazy"
+        android:textColor="#414852"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_modo_som_radio_crazy"
+        app:layout_constraintStart_toEndOf="@+id/dialog_modo_som_radio_crazy"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_radio_crazy" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Modo de som"
+
+        android:textColor="@color/dialog_titulo"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_alternativa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/activity_configuracoes_modo_som_subtitulo_alternativa"
+        android:textColor="#414852"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_modo_som_radio_alternativa"
+        app:layout_constraintStart_toEndOf="@+id/dialog_modo_som_radio_alternativa"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_radio_alternativa" />
+
+
+    <RadioButton
+        android:id="@+id/dialog_modo_som_radio_padrao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:theme="@style/MyRaidoButtonTwo"
+        android:textColor="@color/dialog_modo_som_text_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_padrao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="@string/activity_configuracoes_modo_som_subtitulo"
+        android:textColor="#414852"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_modo_som_radio_padrao"
+        app:layout_constraintStart_toEndOf="@+id/dialog_modo_som_radio_padrao"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_radio_padrao" />
+
+
+    <RadioButton
+        android:id="@+id/dialog_modo_som_radio_alternativa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="11dp"
+        android:theme="@style/MyRaidoButtonTwo"
+        android:checked="false"
+        android:textColor="@color/dialog_modo_som_text_check"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_modo_som_radio_padrao" />
+
+    <RadioButton
+        android:id="@+id/dialog_modo_som_radio_crazy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="11dp"
+        android:theme="@style/MyRaidoButtonTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_modo_som_radio_alternativa" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_ok"
+        android:layout_width="96dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="Ok"
+        android:background="@drawable/act_settings_dialog_ripple_ok"
+        android:textColor="#f77062"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_modo_som_radio_gravou" />
+
+    <TextView
+        android:id="@+id/dialog_modo_som_tv_cancelar"
+        android:layout_width="96dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="Cancelar"
+        android:background="@drawable/act_settings_dialog_ripple_ok"
+        android:textColor="#808080"
+        app:layout_constraintEnd_toStartOf="@+id/dialog_modo_som_tv_ok"
+        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_tv_ok" />
+
+
+</android.support.constraint.ConstraintLayout>

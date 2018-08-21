@@ -1,6 +1,7 @@
 package yourdev.noisealert.Class;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -20,26 +21,7 @@ public class MyMediaPlayer {
 
     //int music = R.raw.toque_hotline_bling;
 
-    public MediaPlayer playMusic(Context context, android.media.MediaPlayer mp){
-        try {
-            if (mp.isPlaying()) {
-             //   mp.release();
-             //   mp = null;
-                return mp;
-            } else {
 
-                mp = MediaPlayer.create(context, R.raw.toque_hotline_bling);
-                mp.start();
-
-                return mp;
-            }
-        }catch (NullPointerException n){
-            mp = MediaPlayer.create(context, R.raw.toque_hotline_bling);
-            mp.start();
-            return mp;
-        }
-
-    }
 
     public  MediaPlayer playMusic(Context context, android.media.MediaPlayer mp,Integer uri){
         try {
@@ -67,6 +49,44 @@ public class MyMediaPlayer {
             Toast.makeText(context,"Entrou no Catch",Toast.LENGTH_SHORT).show();
     //        mp.start();
           //  mp.release();
+            return mp;
+        }
+
+        //    return mp;
+    }
+
+    public  MediaPlayer playMusicWithInternalURI(Context context, android.media.MediaPlayer mp,String uri){
+        try {
+
+
+            if (mp.isPlaying()) {
+                mp.pause();
+                mp.stop();
+                //  mp.release();
+                //   mp = new MediaPlayer();
+                return mp;
+            } else {
+//context.getExternalCacheDir().getAbsolutePath() + "noise_alert_music.3gp"
+                Uri myUri = Uri.parse(uri); // initialize Uri here
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setDataSource(context, myUri);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+                return mp;
+            }
+
+        }catch (NullPointerException | IllegalStateException i){
+
+            mp = new MediaPlayer();
+
+            //  mp = android.media.MediaPlayer.create(context, uri);
+            i.printStackTrace();Toast.makeText(context,"Entrou catch" ,Toast.LENGTH_SHORT).show();
+            //        mp.start();
+            //  mp.release();
+            return mp;
+        } catch (IOException e) {
+            e.printStackTrace();
             return mp;
         }
 

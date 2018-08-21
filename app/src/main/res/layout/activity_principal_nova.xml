@@ -160,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/act_principal_image_bot"
-            app:srcCompat="@drawable/ic_activity_principal_car" />
+            app:srcCompat="@mipmap/ic_carousel_100" />
 
         <in.goodiebag.carouselpicker.CarouselPicker
             android:id="@+id/carouselPicker1"

@@ -9,7 +9,7 @@ import yourdev.noisealert.R
 class Activity_Sobre_Nos : AppCompatActivity() {
 
     lateinit var butReturn:ImageView
-    lateinit var butConfig:ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,20 +21,22 @@ class Activity_Sobre_Nos : AppCompatActivity() {
           //  startActivity(Intent(this, Activity_Principal::class.java))
             finish()
         }
-        butConfig.setOnClickListener{
-             finish()
-             startActivity(Intent(this, Activity_Configuracoes::class.java))
-        }
+
 
     }
 
 
     fun initializeUi(){
 
-        butReturn = findViewById(R.id.activity_sobre_nos_return)
-        butConfig = findViewById(R.id.activity_principal_sobre_nos_config)
+        butReturn = findViewById(R.id.act_settings_return)
+    //    butConfig = findViewById(R.id.activity_principal_sobre_nos_config)
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 
 

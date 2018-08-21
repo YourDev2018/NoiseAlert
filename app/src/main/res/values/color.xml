@@ -9,11 +9,17 @@
     <color name="botNavigationPrincipal">#333333</color>
     <color name="fundoIndex">#ffffff</color>
     <color name="apresentacao_text_view">#ffffff</color>
+    <color name="act_settings_cronstraint_background">#ffffff</color>
     <color name="activity_inicial_carregamento_fundo">#000000</color>
     <color name="activity_principal_background_color"> #aa0548</color>
-    <color name="activity_principal_background_color_off"> #38081b</color>
+    <color name="activity_principal_background_color_off">#38081b</color>
     <color name="activity_sobre_nos_background_color"> #aa0548</color>
     <color name="activity_principal_progress_bar_color">#ff1070</color>
     <color name="activity_principal_fundo_new">#ffffff</color>
+    <color name="act_settings_text_view_titulo">#687178</color>
+    <color name="dialog_background">#fafafa</color>
+    <color name="dialog_titulo">#414852</color>
+    <color name="dialog_modo_som_text_check">#414852</color>
+    <color name="dialog_modo_som_text_check_true">#f86c69</color>
 
 </resources>
