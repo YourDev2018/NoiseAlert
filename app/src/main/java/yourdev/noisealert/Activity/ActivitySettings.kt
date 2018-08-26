@@ -5,14 +5,18 @@ import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.ImageFormat
+import android.graphics.Typeface
 import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.opengl.Visibility
 import android.os.Bundle
 import android.os.Environment
 import android.os.SystemClock
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -37,6 +41,15 @@ class ActivitySettings : AppCompatActivity(){
     lateinit var contraintTempoToque: ConstraintLayout
     lateinit var contraintSobreNos: ConstraintLayout
 
+    lateinit var textViewModoSom: TextView
+    lateinit var textViewBuscar: TextView
+    lateinit var textViewGravar: TextView
+    lateinit var textViewVibrar: TextView
+    lateinit var textViewSobreNois: TextView
+    lateinit var textViewTempoToque: TextView
+    lateinit var textViewHome: TextView
+
+
     lateinit var butReturn: ImageView
 
  //   private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -57,14 +70,35 @@ class ActivitySettings : AppCompatActivity(){
 
     lateinit var subTitulo: TextView
 
+    lateinit var one:TextView
+    lateinit var three: TextView
+    lateinit var five:TextView
+    lateinit var seven:TextView
+    lateinit var ten:TextView
+    lateinit var two:TextView
+    lateinit var four:TextView
+    lateinit var six:TextView
+    lateinit var eight:TextView
+    lateinit var nine:TextView
+
+    lateinit var seekBarDiscrete: SeekBar
+
+    var tempoToque = 0
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
         initializeUi()
+        fonts()
 
-        contraintTempoToque.setOnClickListener { /*dialogTempoToque()*/ emBreve() }
+        contraintTempoToque.setOnClickListener { /*dialogTempoToque()*/ dialogTempoToque() }
         constraintVibrar.setOnClickListener { contraintSetSwitch() }
+        switchVibrar.setOnClickListener { contraintSetSwitch() }
         constraintLayoutGravar.setOnClickListener { dialogGravarToque() }
         constraintLayoutBuscar.setOnClickListener { /* buscarMusica() */ emBreve() }
         constraintLayoutModoSom.setOnClickListener { dialogModoSom() }
@@ -98,12 +132,14 @@ class ActivitySettings : AppCompatActivity(){
 
         }
 
+        switchVibrar.isChecked = getSwitch() == 1
 
 
-
-        butReturn.setOnClickListener { startActivity(Intent(this, ActivityPrincipal::class.java)); finish() }
+        butReturn.setOnClickListener { onBackPressed() }
 
         switchVibrar.setOnClickListener{setSwitch()}
+
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -137,7 +173,17 @@ class ActivitySettings : AppCompatActivity(){
         contraintSobreNos = findViewById(R.id.act_settings_contraint_sobre_nos)
         subTitulo = findViewById(R.id.act_settings_modo_som_subtitulo)
 
+        textViewBuscar = findViewById(R.id.act_settings_tv_buscar_toque)
+        textViewGravar = findViewById(R.id.act_settings_tv_gravar_toque)
+        textViewModoSom = findViewById(R.id.act_settings_tv_modo_som)
+        textViewVibrar = findViewById(R.id.tv_vibrar)
+        textViewSobreNois = findViewById(R.id.act_settings_tv_sobre_nos)
+        textViewHome = findViewById(R.id.act_principal_text_view_home)
+        textViewTempoToque = findViewById(R.id.act_settings_tv_tempo_toque)
+
+
     }
+
 
     private fun dialogModoSom(){
 
@@ -164,6 +210,19 @@ class ActivitySettings : AppCompatActivity(){
 
         val tvOk = view.findViewById<TextView>(R.id.dialog_modo_som_tv_ok)
         val tvCancelar = view.findViewById<TextView>(R.id.dialog_modo_som_tv_cancelar)
+
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+
+        tvPadrao.typeface = regular
+        tvAlternativa.typeface = regular
+        tvdioCrazy.typeface = regular
+        tvToqueBuscar.typeface=regular
+        tvToqueGravar.typeface=regular
+        tvOk.typeface=medium
+        tvCancelar.typeface = medium
+
+
 
 
         val alertDialog = builder.create()
@@ -439,10 +498,10 @@ class ActivitySettings : AppCompatActivity(){
 
 
         val tvSalvar = view.findViewById<TextView>(R.id.dialog_gravar_toque_salvar)
-        val tvCancelar = view.findViewById<TextView>(R.id.dialog_gravar_toque_cancelar)
+        //val tvCancelar = view.findViewById<TextView>(R.id.dialog_gravar_toque_cancelar)
         val tvCronometro = view.findViewById<Chronometer>(R.id.dialog_gravar_toque_cronometro)
 
-
+        var auxGravando = false
         val butPlay = view.findViewById<ImageView>(R.id.dialog_gravar_toque_play)
         val play = view.findViewById<ImageView>(R.id.dialog_but_circle_play)
         val stop = view.findViewById<ImageView>(R.id.dialog_but_circle_stop)
@@ -450,8 +509,15 @@ class ActivitySettings : AppCompatActivity(){
         alertDialog.setView(view)
         alertDialog.show()
 
-        tvCancelar.setOnClickListener { alertDialog.dismiss() }
-        tvSalvar.setOnClickListener { alertDialog.dismiss(); dialogToqueSalvo() }
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+
+        tvSalvar.typeface = medium
+
+
+  //      tvCancelar.setOnClickListener { alertDialog.dismiss() }
+        tvSalvar.setOnClickListener { alertDialog.dismiss(); if (auxGravando){dialogToqueSalvo();setUrlGravar(mFileName)}; stopRecorder(); if (tvCronometro.isActivated) { tvCronometro.stop()} }
+
 
         butPlay.setOnClickListener {
             if (butPlay.tag == "on"){
@@ -463,8 +529,7 @@ class ActivitySettings : AppCompatActivity(){
                 tvCronometro.start()
 
                 startRecorder()
-
-
+                auxGravando = true
 
             }else{
                 stopRecorder()
@@ -472,7 +537,7 @@ class ActivitySettings : AppCompatActivity(){
                 play.visibility = View.VISIBLE
                 stop.visibility = View.GONE
                 mFileName = externalCacheDir.absolutePath + "/noise_alert_music.3gp"
-                setUrlGravar(mFileName)
+
 
                 tvCronometro.stop()
             }
@@ -486,9 +551,253 @@ class ActivitySettings : AppCompatActivity(){
         val inflater = LayoutInflater.from(this@ActivitySettings)
         val view = inflater.inflate(R.layout.dialog_tempo_toque, null)
 
+        one = view.findViewById<TextView>(R.id.tempo_toque_one)
+        three = view.findViewById<TextView>(R.id.tempo_toque_3)
+        five = view.findViewById<TextView>(R.id.tempo_toque_5)
+        seven = view.findViewById<TextView>(R.id.tempo_toque_7)
+        ten = view.findViewById<TextView>(R.id.tempo_toque_10 )
+        two = view.findViewById(R.id.tempo_toque_2)
+        four = view.findViewById(R.id.tempo_toque_4)
+        six = view.findViewById(R.id.tempo_toque_6)
+        eight = view.findViewById(R.id.tempo_toque_8)
+        nine = view.findViewById(R.id.tempo_toque_9)
+
+        val tvSalvar = view.findViewById<TextView>(R.id.dialog_tempo_toque_ok)
+        val tvCancelar = view.findViewById<TextView>(R.id.dialog_tempo_toque_cancelar)
+
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+
+        tvCancelar.typeface = medium
+        tvSalvar.typeface = medium
+
+        one.typeface = medium
+        two.typeface = medium
+        three.typeface = medium
+        four.typeface = medium
+        five.typeface = medium
+        six.typeface = medium
+        seven.typeface = medium
+        eight.typeface = medium
+        nine.typeface = medium
+        ten.typeface = medium
+
+        seekBarDiscrete = view.findViewById(R.id.dialog_tempo_toque_seek_bar)
+
+
+        val auxTempo = getSalvarTempoToque()
+        seekBarDiscrete.progress = auxTempo
+
+        if (auxTempo == 1)
+            one.visibility = View.VISIBLE
+        if (auxTempo == 2)
+            two.visibility = View.VISIBLE
+
+        if (auxTempo ==3)
+            three.visibility = View.VISIBLE
+
+        if (auxTempo ==4)
+            four.visibility = View.VISIBLE
+        if (auxTempo ==5)
+            five.visibility = View.VISIBLE
+        if (auxTempo ==6)
+            six.visibility = View.VISIBLE
+        if (auxTempo ==7)
+            seven.visibility = View.VISIBLE
+        if (auxTempo ==8)
+            eight.visibility = View.VISIBLE
+        if (auxTempo ==9)
+            nine.visibility = View.VISIBLE
+        if (auxTempo ==10)
+            ten.visibility = View.VISIBLE
+
         val alertDialog = builder.create()
         alertDialog.setView(view)
         alertDialog.show()
+
+
+
+        seekBarDiscrete.setOnSeekBarChangeListener(object : ViewPager.OnPageChangeListener, SeekBar.OnSeekBarChangeListener {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+
+
+
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (progress == 1) {
+                    one.visibility = View.VISIBLE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+                if (progress == 3) {
+                    one.visibility = View.GONE
+                    three.visibility = View.VISIBLE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 5) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.VISIBLE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 7) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    five.visibility = View.GONE
+                    seven.visibility = View.VISIBLE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 10) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.VISIBLE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 2) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.VISIBLE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 4) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.VISIBLE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 6) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.VISIBLE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 8) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.VISIBLE
+                    nine.visibility = View.GONE
+                }
+
+                if (progress == 9) {
+                    one.visibility = View.GONE
+                    three.visibility = View.GONE
+                    seven.visibility = View.GONE
+                    five.visibility = View.GONE
+                    ten.visibility = View.GONE
+
+                    two.visibility = View.GONE
+                    four.visibility = View.GONE
+                    six.visibility = View.GONE
+                    eight.visibility = View.GONE
+                    nine.visibility = View.VISIBLE
+                }
+
+
+
+
+
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                //Log.i("Noise_Alert_Console",seekBar?.progress.toString())
+                tempoToque = seekBar!!.progress
+                if (tempoToque ==0){
+                    tempoToque = 1
+                }
+            }
+
+        })
+
+
+        tvSalvar.setOnClickListener { setGravarTempoToque(tempoToque); alertDialog.dismiss() }
+        tvCancelar.setOnClickListener { alertDialog.dismiss() }
+
+
     }
 
     private fun setSwitch(){
@@ -506,6 +815,20 @@ class ActivitySettings : AppCompatActivity(){
 
         //   getSwith()
 
+    }
+
+    private fun getSwitch():Int{
+        val sql = FuncSQLiteDB(applicationContext)
+        val colunas = arrayOf("vibracao")
+        val cursor  = sql.getDados("UserConfig",colunas)
+
+        try {
+            cursor.moveToFirst()
+            return cursor.getInt(cursor.getColumnIndex("vibracao"))
+        }catch (i: RuntimeException){
+            Log.i("Console_Noise_Alert_toq", "Entrou no Runtime")
+            return 0
+        }
     }
 
     private fun contraintSetSwitch(){
@@ -533,10 +856,65 @@ class ActivitySettings : AppCompatActivity(){
         }
     }
 
+    private fun setGravarTempoToque(aux:Int){
+
+        val sql = FuncSQLiteDB(applicationContext)
+        val contentValues = ContentValues()
+        contentValues.put("tempoDeToque", aux)
+        if(sql.upadateDados(contentValues, "UserConfig", "id=1")){
+            Log.i("Noise_Console","UpdateGravar com sucesso")
+        }
+
+    }
+
+    private fun getSalvarTempoToque():Int{
+
+        val sql = FuncSQLiteDB(applicationContext)
+        val colunas = arrayOf("tempoDeToque")
+        val cursor  = sql.getDados("UserConfig",colunas)
+        try {
+            cursor.moveToFirst()
+            return cursor.getInt(cursor.getColumnIndex("tempoDeToque")).toInt()
+        }catch (i: RuntimeException){
+            Toast.makeText(applicationContext,"Erro na leitura de dados",Toast.LENGTH_SHORT).show()
+            return 4
+
+        }
+
+    }
+
 
     override fun onBackPressed() {
         super.onBackPressed()
-        finish()
+
+        val colunas = arrayOf("id","sensibilidade","modo_som","vibracao","urlMusicBuscar","urlMusicGravar","nameMusic","phoneState","tempoDeToque")
+
+
+        val sql = FuncSQLiteDB(applicationContext)
+        // chama a função get, retornando id
+        val cursor  = sql.getDados("UserConfig",colunas)
+
+        // entra no TRY/CATCH, se ele ficar no try, a base de dados ja existe e a pessoa já usa o app
+        // se for para o Catch, é a primeira vez do usuário, então, crio a tabela de dados e envio para apresentação
+        try {
+
+            cursor.moveToFirst()
+            val intent = Intent(this,ActivityPrincipal::class.java)
+
+
+            intent.putExtra("modo_som",cursor.getString(cursor.getColumnIndex("modo_som")))
+            intent.putExtra("vibracao",cursor.getInt(cursor.getColumnIndex("vibracao")))
+
+            intent.putExtra("phoneState",cursor.getInt(cursor.getColumnIndex("phoneState")))
+            intent.putExtra("tempoDeToque",cursor.getInt(cursor.getColumnIndex("tempoDeToque")))
+
+            startActivity(intent)
+        //startActivity(Intent(this, ActivityPrincipal::class.java))
+            finish()
+        }catch (i: RuntimeException){
+
+
+        }
     }
 
 
@@ -640,11 +1018,11 @@ class ActivitySettings : AppCompatActivity(){
             mRecorder.release()
             mRecorder = MediaRecorder()
 
-            mPlayer = mp.pauseMusic(mPlayer)
+        //    mPlayer = mp.pauseMusic(mPlayer)
         }catch (i: IllegalStateException ){
-            mPlayer = mp.pauseMusic(mPlayer)
+          //  mPlayer = mp.pauseMusic(mPlayer)
         }catch (i: RuntimeException){
-            mPlayer = mp.pauseMusic(mPlayer)
+          //  mPlayer = mp.pauseMusic(mPlayer)
         }
 
     }
@@ -656,14 +1034,38 @@ class ActivitySettings : AppCompatActivity(){
         val view = inflater.inflate(R.layout.dialog_toque_salvo, null)
 
         val butOk = view.findViewById<TextView>(R.id.dialog_toque_salvo_ok)
+        val textView = view.findViewById<TextView>(R.id.dialog_toque_salvo_modo_som)
 
 
+
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+
+        butOk.typeface = medium
+        textView.typeface = regular
 
         val alertDialog = builder.create()
         alertDialog.setView(view)
         alertDialog.show()
 
         butOk.setOnClickListener { alertDialog.dismiss() }
+
+    }
+
+
+
+    private fun fonts() {
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+
+        textViewSobreNois.typeface = medium
+        textViewVibrar.typeface = medium
+        textViewModoSom.typeface = medium
+        textViewGravar.typeface = medium
+        textViewBuscar.typeface = medium
+        textViewTempoToque.typeface = medium
+        subTitulo.typeface = regular
+        textViewHome.typeface = medium
 
     }
 

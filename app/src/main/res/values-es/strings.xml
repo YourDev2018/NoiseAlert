@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">NoiseAlert</string>
+
+
+    <string name="apresentacao_text_view_top">Não deixe nada atrapalhar você</string>
+    <string name="principal_text_view_ligado">Microfone Ligado</string>
+    <string name="principal_text_view_desligado"> Microfone Desligado</string>
+
+    <string name="sobre_nos_subtitulo">Usted podrá regular y administrar el ruido en el ambiente</string>
+
+    <string name="sobre_nos_conteudo">Noise Alert lo ayuda a usted a controlar los ruidos en diversos ambientes como en las sala de clases, en biblioteca, salas de reunión y otro.
+\n \nNoise Alert permite que usted pueda definir el límite del sonido de su ambiente controlando el mismo que generan las personas a su alrededor.
+        \n  \nGustavo Mota es fundador de WeDologos, que fue el generador de la idea y el desarrollo de la app estuvo a cargo de Your Dev quienes transformaron la idea a una app. </string>
+    <string name="activity_configuracoes_titulo">Configurações</string>
+
+    <string name="activity_configuracoes_modo_som_titulo">Seleccione una alarma</string>
+    <string name="sobre_nos">Sobre Nosotros</string>
+    <string name="activity_configuracoes_vibrar">Vibrar mientras sona</string>
+    <string name="activity_configuracoes_duracao_alarme">Tiempo de la alarma</string>
+    <string name="activity_configuracoes_buscar_toque">Buscar alarma</string>
+    <string name="activity_configuracoes_gravar_toque">Grabar alarma</string>
+
+    <string name="activity_configuracoes_modo_som_titulo_dialog">Alarma seleccionada</string>
+
+
+    <string name="activity_configuracoes_modo_som_subtitulo">Padrón</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_alternativa">Alternativa</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_crazy">Vibrar solamente</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_personalizado">Personalizado</string>
+
+
+    <string name="activity_configuracoes_volume">Volume</string>
+
+
+    <string name="activity_configuracoes_buscar_toque_pop_up">La alarma buscada</string>
+    <string name="activity_configuracoes_gravar_toque_pop_up">La alarma que grabaste</string>
+
+    <string name="activity_configuracoes_tempo_toque">Tiempo de la alarma</string>
+    <string name="dialog_toque_salvo">Su alarma fue grabada en Seleccione una alarma.</string>
+
+    <string name="titulo_notificao_on">Noise Alert On</string>
+
+    <string name="texto_notificacao">Estamos administrando su ambiente</string>
+
+
+
+    <string name="salvar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+
+    <string name="titulo_configuracoes">Ajustes</string>
+    <string name="principal_volume_ambiente">Volumen del ambiente</string>
+    <string name="principal_sensibilidade_microfone">Sensibilidad del micrófono</string>
+
+
+
+</resources>
+

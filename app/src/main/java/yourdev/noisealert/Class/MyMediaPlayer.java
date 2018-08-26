@@ -29,9 +29,9 @@ public class MyMediaPlayer {
 
             if (mp.isPlaying()) {
                 mp.pause();
-                mp.stop();
-              //  mp.release();
-             //   mp = new MediaPlayer();
+             //   mp.stop();
+                mp.release();
+                mp = new MediaPlayer();
                 return mp;
             } else {
 
@@ -134,7 +134,7 @@ public class MyMediaPlayer {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             vibrator.vibrate(VibrationEffect.createOneShot(tempoToque,VibrationEffect.DEFAULT_AMPLITUDE));
         else
-            vibrator.vibrate(4000);
+            vibrator.vibrate(tempoToque);
 
         return vibrator;
     }

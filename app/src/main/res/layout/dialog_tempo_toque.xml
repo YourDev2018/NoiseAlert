@@ -2,8 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/dialog_background"
+    android:paddingBottom="14dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Modo de som"
+        android:text="@string/activity_configuracoes_tempo_toque"
 
         android:textColor="@color/dialog_titulo"
         android:textSize="18sp"
@@ -22,7 +23,7 @@
 
 
     <TextView
-        android:id="@+id/dialog_modo_som_tv_ok"
+        android:id="@+id/dialog_tempo_toque_ok"
         android:layout_width="96dp"
         android:layout_height="36dp"
         android:layout_marginEnd="16dp"
@@ -37,51 +38,173 @@
         app:layout_constraintTop_toBottomOf="@+id/dialog_tempo_toque_seek_bar" />
 
     <TextView
-        android:id="@+id/dialog_modo_som_tv_cancelar"
+        android:id="@+id/dialog_tempo_toque_cancelar"
         android:layout_width="96dp"
         android:layout_height="36dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/act_settings_dialog_ripple_ok"
         android:gravity="center"
-        android:text="Cancelar"
+        android:text="@string/cancelar"
         android:textColor="#808080"
-        app:layout_constraintEnd_toStartOf="@+id/dialog_modo_som_tv_ok"
-        app:layout_constraintTop_toTopOf="@+id/dialog_modo_som_tv_ok" />
+        app:layout_constraintEnd_toStartOf="@+id/dialog_tempo_toque_ok"
+        app:layout_constraintTop_toTopOf="@+id/dialog_tempo_toque_ok" />
 
     <SeekBar
         android:id="@+id/dialog_tempo_toque_seek_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="0dp"
-        android:layout_height="101dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
 
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="45dp"
         android:max="10"
-        android:progress="5"
-        android:splitTrack="false"
-        android:theme="@style/MySeekBar"
-        android:thumb="@drawable/thumb_teste"
 
+        android:progress="2"
+        android:splitTrack="true"
+        android:theme="@style/MySeekBar"
+        android:thumb="@drawable/activity_principal_circle_gradient_thumb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
-        android:id="@+id/textView12"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:id="@+id/tempo_toque_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="14dp"
+        android:text="1"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:text="5"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="10"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="14dp"
+        android:text="3"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:text="TextView"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dialog_tempo_toque_seek_bar" />
+        android:text="7"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="14dp"
+        android:text="2"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.1945"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="14dp"
+        android:text="4"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="6"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.60"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="8"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
+
+    <TextView
+        android:id="@+id/tempo_toque_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="9"
+        android:visibility="gone"
+        android:textColor="@color/activity_principal_progress_bar_color"
+        app:layout_constraintBottom_toBottomOf="@+id/tempo_toque_5"
+        app:layout_constraintEnd_toEndOf="@+id/dialog_tempo_toque_seek_bar"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="@+id/dialog_tempo_toque_seek_bar" />
 
 
 </android.support.constraint.ConstraintLayout>

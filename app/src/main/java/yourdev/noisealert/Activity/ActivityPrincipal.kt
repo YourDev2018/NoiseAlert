@@ -7,17 +7,18 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 
-import yourdev.noisealert.Class.CarouselItens
 import yourdev.noisealert.R
 
 import `in`.goodiebag.carouselpicker.CarouselPicker
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Typeface
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Handler
@@ -29,9 +30,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import org.w3c.dom.Text
-import yourdev.noisealert.Class.FuncSQLiteDB
-import yourdev.noisealert.Class.ManagePermissions
-import yourdev.noisealert.Class.MyMediaPlayer
+import yourdev.noisealert.Class.*
 
 
 class ActivityPrincipal : AppCompatActivity() {
@@ -51,6 +50,8 @@ class ActivityPrincipal : AppCompatActivity() {
     lateinit var textAdapter: CarouselPicker.CarouselViewAdapter
     lateinit var listCarousel: List<CarouselPicker.PickerItem>
     lateinit var goSettings: Button
+    lateinit var homeTv:TextView
+
     private var mFileName = ""
     private var contVezes = 0
 
@@ -87,12 +88,20 @@ class ActivityPrincipal : AppCompatActivity() {
     private var mp = MyMediaPlayer()
     var mPlayer = MediaPlayer()
 
+    var myNotification =  MyNotification()
+    lateinit var notificationManager: NotificationManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal_nova)
 
         initializeUi()
+        fonts()
+
+       // stopRecorder()
+        try {
+
 
         val intent = intent
         if (intent != null) {
@@ -101,14 +110,15 @@ class ActivityPrincipal : AppCompatActivity() {
             if (params != null) {
 
                 auxPhoneState = params["phoneState"] as Int
-                Log.i("Noise_Console", "phoneState: $auxPhoneState")
+               // Log.i("Noise_Console", "phoneState: $auxPhoneState")
 
 
-                if (auxPhoneState == 1)
+                if (auxPhoneState == 1) {
                     efeitosOn()
-                else
+                    setNotification(true)
+                }else {
                     efeitosOff()
-                 //   stopRecorder()
+                }//   stopRecorder()
 
 
                 modoToque = params["modo_som"].toString()
@@ -116,7 +126,22 @@ class ActivityPrincipal : AppCompatActivity() {
 
                 tempoDeToque = params["tempoDeToque"] as Int
 
+               /* val notification = params["notification"] as Boolean
+                if (notification){
+                    finish()
+                }
+*/
+            }else{
+
+                if(getPhoneState()==1){
+                    stopRecorder()
+
+                }
+
             }
+
+        }
+        }catch (i: RuntimeException){
 
         }
 
@@ -130,12 +155,15 @@ class ActivityPrincipal : AppCompatActivity() {
                 efeitosOff()
                 stopRecorder()
                 setPhoneState(0)
+                setNotification(false)
             } else
                 if (butOnOff.tag.toString() == "off") {
                     // Toast.makeText(applicationContext, "True", Toast.LENGTH_SHORT).show()
                     efeitosOn()
+                    stopRecorder()
                     startRecorder()
                     setPhoneState(1)
+                    setNotification(true)
                 }
         }
 
@@ -164,7 +192,7 @@ class ActivityPrincipal : AppCompatActivity() {
             }
             override fun onPageSelected(position: Int) {
 
-                Log.i("Noise_Console","Position $position ")
+               // Log.i("Noise_Console","Position $position ")
 
                 if (position == 0)
                     TEMPO_MEDIO = 10000
@@ -226,7 +254,8 @@ class ActivityPrincipal : AppCompatActivity() {
                     if (auxStop){
                         auxStop = false
                         Thread.sleep((tempoDeToque*1000).toLong())
-                        mp.pauseMusic(mPlayer)
+                        mPlayer = mp.pauseMusic(mPlayer)
+                        vibrator = mp.pauseVibrator(vibrator)
                         continue
                     }
 
@@ -253,6 +282,7 @@ class ActivityPrincipal : AppCompatActivity() {
                 if (grantResults.size > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
 
                     //Toast.makeText(applicationContext,"Permission True", Toast.LENGTH_SHORT).show()
+                    stopRecorder()
                     startRecorder()
 
                 } else {
@@ -280,12 +310,26 @@ class ActivityPrincipal : AppCompatActivity() {
 
         //salvarDados()
     }
+/*
+    override fun onStop() {
+        super.onStop()
+        stopRecorder()
+        //Log.i("Console_Noise_Alert_toq","onStop")
+    }
+  */
 
     override fun onDestroy() {
         super.onDestroy()
-
+      //  Log.i("Console_Noise_Alert_toq","onDestroy")
         // salvarDados()
         stopRecorder()
+        try {
+            notificationManager.cancel(1)
+        }catch (I: RuntimeException){
+            //
+        }catch (i: UninitializedPropertyAccessException){
+            //
+        }
 
     }
 
@@ -320,11 +364,11 @@ class ActivityPrincipal : AppCompatActivity() {
 
 
                 val aux = list.get(i) as Double
-                Log.i("Alarme","teste for " + aux)
+               // Log.i("Alarme","teste for " + aux)
                 if (aux < TEMPO_MEDIO) {
 
                     mPlayer = mp.pauseMusic(mPlayer)
-                    Log.i("Alarme","Pausado " )
+                   // Log.i("Alarme","Pausado " )
                     list = java.util.ArrayList()
                     break
                 }
@@ -356,7 +400,19 @@ class ActivityPrincipal : AppCompatActivity() {
 
 
                     } else{
-                        mPlayer = mp.playMusicWithInternalURI(applicationContext, mPlayer, externalCacheDir.absolutePath + "/noise_alert_music.3gp")
+
+                        val modoSom = getModoSom()
+                        if(modoSom== "gravar") {
+                            mPlayer = mp.playMusicWithInternalURI(applicationContext, mPlayer, externalCacheDir.absolutePath + "/noise_alert_music.3gp")
+                        }
+
+                        if (modoSom == "padrao"){
+                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_hotline_bling)
+                        }
+
+                        if (modoSom == "alternativa"){
+                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_alternativo)
+                        }
                     }
 
                     //startCronometro()
@@ -470,8 +526,17 @@ class ActivityPrincipal : AppCompatActivity() {
         carouselPicker1.adapter = textAdapter
         gambiarra = findViewById(R.id.gambiarra_off)
         goSettings = findViewById(R.id.act_principal_nova_configuracoes)
+        homeTv = findViewById(R.id.act_principal_text_view_home)
 
 
+    }
+
+    private fun fonts(){
+        val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
+        val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
+        homeTv.typeface = medium
+        volumeAmbiente.typeface = regular
+        sensibilidadeTextView.typeface = regular
     }
 
     private fun getVibrate(): Boolean{
@@ -515,10 +580,10 @@ class ActivityPrincipal : AppCompatActivity() {
 
         try {
             cursor.moveToFirst()
-            Log.i("Console_Noise_Alert_ms","Noise:"+ cursor.getString(cursor.getColumnIndex("modo_som")).trim())
+       //     Log.i("Console_Noise_Alert_ms","Noise:"+ cursor.getString(cursor.getColumnIndex("modo_som")).trim())
             return cursor.getString(cursor.getColumnIndex("modo_som")).trim()
         }catch (i: RuntimeException){
-            Log.i("Console_Noise_Alert_toq", "Entrou no Runtime")
+         //   Log.i("Console_Noise_Alert_toq", "Entrou no Runtime")
             return ""
         }
     }
@@ -529,12 +594,12 @@ class ActivityPrincipal : AppCompatActivity() {
 
         if (aux == "padrao") {
             //    mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_hotline_bling)
-            Log.i("Console_Noise_Alert","Entrou Padrão getToque")
+        //    Log.i("Console_Noise_Alert","Entrou Padrão getToque")
             return R.raw.toque_hotline_bling
         }else
             if (aux == "alternativa") {
                 //  mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_alternativo)
-                Log.i("Console_Noise_Alert", "Entrou Alternativo")
+          //      Log.i("Console_Noise_Alert", "Entrou Alternativo")
                 return  R.raw.toque_alternativo
             }else
                 if (aux == "crazy") {
@@ -559,10 +624,11 @@ class ActivityPrincipal : AppCompatActivity() {
 
         try {
             cursor.moveToFirst()
-            //    Log.i("Console_Noise_Alert_ms","Noise:"+ cursor.getString(cursor.getColumnIndex("tempoDeToque")).trim())
-            return cursor.getString(cursor.getColumnIndex("tempoDeToque")).toInt()
+            val aux = cursor.getString(cursor.getColumnIndex("tempoDeToque")).toInt()
+          //  Log.i("Console_Noise_Alert_ms","Tempo de toque $aux")
+            return aux
         }catch (i: RuntimeException){
-            Log.i("Console_Noise_Alert_tmt", "Entrou no Runtime")
+          //  Log.i("Console_Noise_Alert_tmt", "Entrou no Runtime")
             return 4
         }
     }
@@ -573,7 +639,7 @@ class ActivityPrincipal : AppCompatActivity() {
         val contentValues = ContentValues()
         contentValues.put("phoneState",int)
         if(sql.upadateDados(contentValues,"UserConfig","id=1")){
-            Log.i("Noise_Console", "Phone State : $int")
+          // Log.i("Noise_Console", "Phone State : $int")
         }
 
     }
@@ -595,7 +661,24 @@ class ActivityPrincipal : AppCompatActivity() {
 
     private fun startRecorder() {
 
-        mFileName = externalCacheDir.absolutePath + "record.3gp"
+
+        try {
+            val intent = intent
+            if (intent != null) {
+
+                val params = intent.extras
+                if (params != null) {
+                    val aux = params["notificaion"] as Int
+                    if (aux == 1) {
+                        return
+                    }
+                }
+            }
+        }catch (i: RuntimeException){
+
+        }
+
+                mFileName = externalCacheDir.absolutePath + "/record.3gp"
 
         /*
         if (getModoMusica().equals("Personalizado"))
@@ -607,48 +690,57 @@ class ActivityPrincipal : AppCompatActivity() {
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setOutputFile(mFileName)
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-        Log.i("mFileName", mFileName)
+       // Log.i("mFileName", mFileName)
 
         try {
             mRecorder.prepare()
         } catch (ioe: java.io.IOException) {
-            android.util.Log.e("[Monkey]", "IOException: " + android.util.Log.getStackTraceString(ioe))
+       //     android.util.Log.e("Console_Noise_Alert", "IOException: " + android.util.Log.getStackTraceString(ioe))
 
         } catch (e: java.lang.SecurityException) {
-            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
+         //   android.util.Log.e("Console_Noise_Alert", "SecurityException: " + android.util.Log.getStackTraceString(e))
         }
 
         try {
 
             mRecorder.start()
-            Log.i("Console_Noise_Alert","Start Ok")
+           // Log.i("Console_Noise_Alert","Start Ok")
 
         } catch (e: java.lang.SecurityException) {
-            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
+           // android.util.Log.e("Console_Noise_Alert", "SecurityException: " + android.util.Log.getStackTraceString(e))
 
 
         } catch (e: IllegalStateException) {
-            android.util.Log.e("[Monkey]", "SecurityException: " + android.util.Log.getStackTraceString(e))
-
-            //   startRecorder()
+           // android.util.Log.e("Console_Noise_Alert", "SecurityException: " + android.util.Log.getStackTraceString(e))
+            Toast.makeText(applicationContext,"Erro audio Recorder",Toast.LENGTH_SHORT).show()
+            stopRecorder()
+            //startRecorder()
         }
 
     }
 
     private fun stopRecorder() {
-
-        vibrator = mp.pauseVibrator(vibrator)
-        auxStop = false
-
         try {
-            mRecorder.stop()
+            vibrator = mp.pauseVibrator(vibrator)
+            auxStop = false
+
+        }catch (i: RuntimeException) {
+        }catch (i: IllegalStateException ){
+
+        }
+
+        try{
+
+//            mRecorder.stop()
             mRecorder.release()
             mRecorder = MediaRecorder()
 
             mPlayer = mp.pauseMusic(mPlayer)
         }catch (i: IllegalStateException ){
+           // Log.i("Console_Noise_Alert","Illegar" + android.util.Log.getStackTraceString(i))
             mPlayer = mp.pauseMusic(mPlayer)
         }catch (i: RuntimeException){
+           // Log.i("Console_Noise_Alert","Pause RunTime ")
             mPlayer = mp.pauseMusic(mPlayer)
         }
 
@@ -661,7 +753,7 @@ class ActivityPrincipal : AppCompatActivity() {
         val cursor  = sql.getDados("UserConfig",colunas)
         cursor.moveToFirst()
         modoToque = cursor.getString(cursor.getColumnIndex("modo_som")).trim()
-        Log.i("NoiseAlert_Console",modoToque)
+        //Log.i("NoiseAlert_Console",modoToque)
 
         return modoToque
 
@@ -698,5 +790,31 @@ class ActivityPrincipal : AppCompatActivity() {
         }
     }
 
+    private fun setNotification(status: Boolean) {
+
+        try {
+
+            if (status)
+                notificationManager = myNotification.simples(applicationContext, R.mipmap.logo_noise_branca,application.getString(R.string.titulo_notificao_on),application.getString(R.string.texto_notificacao), 1, "1")
+            else
+                notificationManager.cancel(1)
+
+        }catch (i:UninitializedPropertyAccessException){
+            //
+        }
+
+    }
+
+    private fun getPhoneState():Int{
+        val sql = FuncSQLiteDB(applicationContext)
+        val colunas = arrayOf("phoneState")
+        val cursor  = sql.getDados("UserConfig",colunas)
+        cursor.moveToFirst()
+        return cursor.getInt(cursor.getColumnIndex("phoneState"))
+
+    }
+
+
+    
 
 }

@@ -16,13 +16,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/act_principal_text_view_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="72dp"
             android:layout_marginTop="16dp"
             android:text="Home"
+            android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +56,7 @@
 
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/act_settings_tv_modo_som"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"
@@ -74,8 +75,8 @@
             android:layout_height="wrap_content"
             android:text="@string/activity_configuracoes_modo_som_subtitulo"
             android:textColor="@color/act_settings_text_view_titulo"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintStart_toStartOf="@+id/act_settings_tv_modo_som"
+            app:layout_constraintTop_toBottomOf="@+id/act_settings_tv_modo_som" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -93,7 +94,7 @@
 
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/tv_vibrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="28dp"
@@ -114,7 +115,7 @@
             android:checked="true"
             android:theme="@style/SwitchCompatStyle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView22" />
+            app:layout_constraintTop_toTopOf="@+id/tv_vibrar" />
     </android.support.constraint.ConstraintLayout>
 
 

@@ -9,26 +9,14 @@
 
 
     <TextView
-        android:id="@+id/dialog_gravar_toque_cancelar"
-        android:layout_width="96dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="Cancelar"
-        android:textColor="#808080"
-        android:background="@drawable/act_settings_dialog_ripple_ok"
-        app:layout_constraintEnd_toStartOf="@+id/dialog_gravar_toque_salvar"
-        app:layout_constraintTop_toTopOf="@+id/dialog_gravar_toque_salvar" />
-
-    <TextView
         android:id="@+id/dialog_gravar_toque_salvar"
         android:layout_width="96dp"
         android:layout_height="36dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:text="Salvar"
         android:background="@drawable/act_settings_dialog_ripple_ok"
+        android:gravity="center"
+        android:text="@string/salvar"
         android:textColor="#f77062"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -41,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Modo de som"
+        android:text="@string/activity_configuracoes_gravar_toque"
 
         android:textColor="@color/dialog_titulo"
         android:textSize="18sp"
@@ -78,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="@+id/dialog_gravar_toque_play"
         app:layout_constraintStart_toStartOf="@+id/dialog_gravar_toque_play"
         app:layout_constraintTop_toTopOf="@+id/dialog_gravar_toque_play"
-        android:background="@drawable/circle_degrade_dialog_gravar_toque" />
+        android:background="@drawable/act_settings_dialog_ripple_play_toque" />
 
 
     <ImageView
@@ -89,7 +77,7 @@
         android:layout_marginEnd="26dp"
         android:layout_marginStart="26dp"
         android:layout_marginTop="26dp"
-        android:background="@drawable/circle_dialog_gravar_toque_degrade_stop"
+        android:background="@drawable/act_settings_dialog_ripple_stop_toque"
         android:elevation="25dp"
         android:translationX="0dp"
         android:translationY="6dp"
@@ -109,7 +97,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/circle_dialog_gravar_toque_degrade"
+        android:background="@drawable/act_settings_dialog_ripple_gravar_toque"
         android:elevation="14dp"
         android:tag="on"
         android:translationX="0dp"

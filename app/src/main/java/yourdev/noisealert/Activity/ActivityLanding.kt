@@ -57,7 +57,7 @@ class ActivityLanding: AppCompatActivity() {
 
         }catch (i: RuntimeException){
 
-            Log.i("Noise_Console","Landing: Entrou no catch")
+      //      Log.i("Noise_Console","Landing: Entrou no catch")
 
             val contentValues = ContentValues()
             contentValues.put("id",1)

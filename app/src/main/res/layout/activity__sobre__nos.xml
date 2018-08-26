@@ -18,13 +18,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/act_principal_text_view_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="72dp"
             android:layout_marginTop="16dp"
-            android:text="Configurações"
+            android:text="@string/titulo_configuracoes"
+            android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_sobre_nos_novo_top_bar_navigation">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titulo_sobre_nos"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -99,7 +100,7 @@
             app:srcCompat="@drawable/logo_noise_alert_branca" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/text_sobre_nos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -110,7 +111,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo_sobre_nos" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -123,7 +124,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
             app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/text_sobre_nos"
             app:srcCompat="@mipmap/logo_yd_branca" />
 
         <android.support.constraint.Guideline

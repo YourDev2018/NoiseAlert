@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">NoiseAlert</string>
+
+
+    <string name="apresentacao_text_view_top">Não deixe nada atrapalhar você</string>
+    <string name="principal_text_view_ligado">Microfone Ligado</string>
+    <string name="principal_text_view_desligado"> Microfone Desligado</string>
+    <string name="sobre_nos_subtitulo">Gerencie o som ambiente</string>
+
+    <string name="sobre_nos_conteudo">Noise Alert ajuda você a controlar o barulho em diversos ambientes, tais como salas de aula, bibliotecas, salas de reunião e outros.
+\n \n
+Noise Alert permite que você defina o limite do som de um ambiente, controlando pessoas ao seu redor.
+    \n  \n
+    Gustavo Mota, fundador da WeDoLogos, foi o idealizador do app e a YourDev, foi a parceira que transformou a Ideia em um app.  </string>
+    <string name="activity_configuracoes_titulo">Configurações</string>
+
+    <string name="activity_configuracoes_modo_som_titulo">Alarme selecionado </string>
+
+    <string name="activity_configuracoes_modo_som_subtitulo">Padrão</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_alternativa">Alternativa </string>
+    <string name="activity_configuracoes_modo_som_subtitulo_crazy">Apenas vibrando</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_personalizado">Personalizado</string>
+
+    <string name="activity_configuracoes_vibrar">Vibrar enquanto toca</string>
+    <string name="activity_configuracoes_volume">Volume</string>
+    <string name="activity_configuracoes_duracao_alarme">Tempo de alarme</string>
+
+    <string name="activity_configuracoes_buscar_toque">Buscar alarme</string>
+    <string name="activity_configuracoes_gravar_toque">Gravar alarme</string>
+
+    <string name="activity_configuracoes_buscar_toque_pop_up">O alarme que vc buscou</string>
+    <string name="activity_configuracoes_gravar_toque_pop_up">O alarme que você gravou</string>
+
+    <string name="activity_configuracoes_tempo_toque">Tempo de Toque</string>
+    <string name="dialog_toque_salvo">Seu toque está salvo em Toque selecionado.</string>
+
+    <string name="titulo_notificao_on">Noise Alert On</string>
+
+    <string name="texto_notificacao">Estamos gerenciando seu ambiente</string>
+
+    <string name="sobre_nos">Sobre nós</string>
+
+    <string name="salvar">Salvar</string>
+
+
+    <string name="cancelar">Cancelar</string>
+
+
+    <string name="titulo_configuracoes">Configurações</string>
+    <string name="principal_volume_ambiente">Volume ambiente</string>
+    <string name="principal_sensibilidade_microfone">Sensibilidade do microfone</string>
+
+
+
+
+</resources>

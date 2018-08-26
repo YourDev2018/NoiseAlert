@@ -5,37 +5,52 @@
     <string name="apresentacao_text_view_top">Não deixe nada atrapalhar você</string>
     <string name="principal_text_view_ligado">Microfone Ligado</string>
     <string name="principal_text_view_desligado"> Microfone Desligado</string>
-    <string name="sobre_nos_subtitulo">Total controle sobre a  sonoridade do seu ambiente</string>
 
-    <string name="sobre_nos_conteudo"> O Noise Alert nasceu da necessidade de se controlar o som em ambientes que precisam de controle do ruído, tais como Bibliotecas, Salas de Aula, Salas de Reunião e outros.
-\n \n
-Com o Noise Alert, é possível definir a altura limite do ambiente, e controlar os ânimos de quem os frequenta, de forma independente e sutil.
-\n  \n
-O idealizador do app foi Gustavo Mota, empreendedor e fundador da empresa WeDoLogos, que em parceria com a empresa de tecnologia YourDev, transformou a ideia em realidade.</string>
+    <string name="sobre_nos_subtitulo">Manage the environment noise</string>
+
+    <string name="sobre_nos_conteudo"> Noise Alert helps you controlling the noise in a variety os environments, as Classrooms, Libraries, Meeting Room and others.
+\n \nNoise Alert allows you define the limit of the audio in an environment and control people around you.
+        \n  \nGustavo Mota, Founder of WeDoLogos, was the idealist of the app and Your Dev was the partner who transformed the idea in an app. </string>
     <string name="activity_configuracoes_titulo">Configurações</string>
 
-    <string name="activity_configuracoes_modo_som_titulo">Modo de Som </string>
+    <string name="activity_configuracoes_modo_som_titulo">Selected Alert</string>
+    <string name="sobre_nos">About Us</string>
+    <string name="activity_configuracoes_vibrar">Vibrate while Playing</string>
+    <string name="activity_configuracoes_duracao_alarme">Alert Time</string>
+    <string name="activity_configuracoes_buscar_toque">Search other alerts</string>
+    <string name="activity_configuracoes_gravar_toque">Record Alert</string>
 
-    <string name="activity_configuracoes_modo_som_subtitulo">Padrão</string>
-    <string name="activity_configuracoes_modo_som_subtitulo_alternativa">Alternativa </string>
-    <string name="activity_configuracoes_modo_som_subtitulo_crazy">Crazy</string>
+    <string name="activity_configuracoes_modo_som_titulo_dialog">Select an Alert</string>
+
+
+    <string name="activity_configuracoes_modo_som_subtitulo">Default</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_alternativa">Alternative</string>
+    <string name="activity_configuracoes_modo_som_subtitulo_crazy">Vibrate mode</string>
     <string name="activity_configuracoes_modo_som_subtitulo_personalizado">Personalizado</string>
 
-    <string name="activity_configuracoes_vibrar">Vibrar enquanto toca</string>
+
     <string name="activity_configuracoes_volume">Volume</string>
-    <string name="activity_configuracoes_duracao_alarme">Tempo de toque</string>
 
-    <string name="activity_configuracoes_buscar_toque">Buscar Toque</string>
-    <string name="activity_configuracoes_gravar_toque">Gravar Toque</string>
 
-    <string name="activity_configuracoes_buscar_toque_pop_up">O toque que vc buscou</string>
-    <string name="activity_configuracoes_gravar_toque_pop_up">O Toque que você gravou</string>
+    <string name="activity_configuracoes_buscar_toque_pop_up">Your searched alert</string>
+    <string name="activity_configuracoes_gravar_toque_pop_up">Your recorded alert</string>
 
-    <string name="activity_configuracoes_tempo_toque">Tempo de Toque</string>
-    <string name="dialog_toque_salvo">Seu toque está salvo em Modo de som.</string>
+    <string name="activity_configuracoes_tempo_toque">Alert Time</string>
+    <string name="dialog_toque_salvo">Your alert is saved in Selected Alert.</string>
 
-    <string name="sobre_nos">Sobre nós</string>
+    <string name="titulo_notificao_on">Noise Alert On</string>
 
+    <string name="texto_notificacao">We are managing your environment</string>
+
+
+
+    <string name="salvar">Save</string>
+    <string name="cancelar">Cancel</string>
+
+
+    <string name="titulo_configuracoes">Settings</string>
+    <string name="principal_volume_ambiente">Environment noise</string>
+    <string name="principal_sensibilidade_microfone">Sensibility of the mic</string>
 
 
 
