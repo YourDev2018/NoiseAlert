@@ -54,14 +54,14 @@
         <ImageView
             android:id="@+id/act_principal_but_on_off"
             android:layout_width="172dp"
-            android:layout_height="174dp"
+            android:layout_height="172dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/act_principal_ripple_but_on"
             android:elevation="14dp"
+            android:tag="on"
             android:translationX="0dp"
             android:translationY="6dp"
             android:translationZ="0dp"
-            android:tag="on"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

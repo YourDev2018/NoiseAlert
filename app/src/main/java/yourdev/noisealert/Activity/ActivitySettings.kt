@@ -488,7 +488,7 @@ class ActivitySettings : AppCompatActivity(){
     }
 
     private fun emBreve(){
-        Toast.makeText(applicationContext,"Estamos desenvolvendo...",Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext,application.getText(R.string.em_desenvolvimento),Toast.LENGTH_SHORT).show()
     }
 
     private fun dialogGravarToque(){
