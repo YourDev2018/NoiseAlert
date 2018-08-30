@@ -68,13 +68,13 @@
 
         <ImageView
             android:id="@+id/act_principal_progress_bar_fundo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="315dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/activity_principal_progress_bar_on"
-            app:layout_constraintBottom_toBottomOf="@+id/act_principal_seek_bar_on"
-            app:layout_constraintEnd_toEndOf="@+id/act_principal_seek_bar_on"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/act_principal_seek_bar_on"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/act_principal_seek_bar_on" />
 
         <ImageView
@@ -83,9 +83,9 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
             android:background="#00000000"
             android:elevation="1dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -94,16 +94,15 @@
 
         <ImageView
             android:id="@+id/act_principal_seek_bar_on"
-            android:layout_width="0dp"
+            android:layout_width="315dp"
             android:layout_height="45dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
+
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/clip_degrade"
-
-
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/act_principal_but_on_off" />
 
@@ -211,8 +210,6 @@
             app:layout_constraintStart_toStartOf="@+id/act_principal_indicador_sonoro"
             app:layout_constraintTop_toBottomOf="@+id/act_principal_indicador_sonoro"
             app:srcCompat="@drawable/ic_acitivty_principal_triangular" />
-
-
 
 
         <!--  blur = 14 x = 0 y = 6 z = 0  / act_principal_ripple_but_on effect -->

@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.webkit.WebView
 import android.widget.*
 import org.w3c.dom.Text
 import yourdev.noisealert.Class.FuncSQLiteDB
@@ -40,6 +41,7 @@ class ActivitySettings : AppCompatActivity(){
     lateinit var constraintVibrar: ConstraintLayout
     lateinit var contraintTempoToque: ConstraintLayout
     lateinit var contraintSobreNos: ConstraintLayout
+    lateinit var constraintTermosDeUso: ConstraintLayout
 
     lateinit var textViewModoSom: TextView
     lateinit var textViewBuscar: TextView
@@ -103,6 +105,7 @@ class ActivitySettings : AppCompatActivity(){
         constraintLayoutBuscar.setOnClickListener { /* buscarMusica() */ emBreve() }
         constraintLayoutModoSom.setOnClickListener { dialogModoSom() }
         contraintSobreNos.setOnClickListener { sobreNos() }
+//        constraintTermosDeUso.setOnClickListener { termsOfUse() }
 
         val modoSom = getModoSom()
 
@@ -180,6 +183,7 @@ class ActivitySettings : AppCompatActivity(){
         textViewSobreNois = findViewById(R.id.act_settings_tv_sobre_nos)
         textViewHome = findViewById(R.id.act_principal_text_view_home)
         textViewTempoToque = findViewById(R.id.act_settings_tv_tempo_toque)
+      //  constraintTermosDeUso = findViewById(R.id.act_settings_contraint_termos_de_uso)
 
 
     }
@@ -1066,7 +1070,12 @@ class ActivitySettings : AppCompatActivity(){
         textViewTempoToque.typeface = medium
         subTitulo.typeface = regular
         textViewHome.typeface = medium
-
     }
+
+
+    private fun termsOfUse(){
+     //   startActivity(Intent(this, ActivityTermsOfUse::class.java))
+    }
+
 
 }
