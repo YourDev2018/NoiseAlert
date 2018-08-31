@@ -52,7 +52,9 @@
     <string name="principal_volume_ambiente">Volumen del ambiente</string>
     <string name="principal_sensibilidade_microfone">Sensibilidad del micrófono</string>
 
+    <string name="em_desenvolvimento">Todavía estamos desarrollando esa funcionalidad para usted</string>
 
+    <string name="settings_termos_de_uso">Terminos de uso</string>
 
 </resources>
 

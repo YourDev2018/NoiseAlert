@@ -253,7 +253,7 @@ class ActivityPrincipal : AppCompatActivity() {
 
                     if (auxStop){
                         auxStop = false
-                        Thread.sleep((tempoDeToque*1000).toLong())
+                        Thread.sleep((tempoDeToque*1000 - 1000).toLong())
                         mPlayer = mp.pauseMusic(mPlayer)
                         vibrator = mp.pauseVibrator(vibrator)
                         continue
@@ -391,7 +391,7 @@ class ActivityPrincipal : AppCompatActivity() {
                         }
 
                         if (modoSom == "padrao"){
-                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_hotline_bling)
+                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_padrao)
                         }
 
                         if (modoSom == "alternativa"){
@@ -407,7 +407,7 @@ class ActivityPrincipal : AppCompatActivity() {
                         }
 
                         if (modoSom == "padrao"){
-                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_hotline_bling)
+                            mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_padrao)
                         }
 
                         if (modoSom == "alternativa"){
@@ -595,7 +595,7 @@ class ActivityPrincipal : AppCompatActivity() {
         if (aux == "padrao") {
             //    mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_hotline_bling)
         //    Log.i("Console_Noise_Alert","Entrou Padrão getToque")
-            return R.raw.toque_hotline_bling
+            return R.raw.toque_padrao
         }else
             if (aux == "alternativa") {
                 //  mPlayer = android.media.MediaPlayer.create(applicationContext, R.raw.toque_alternativo)
@@ -712,7 +712,7 @@ class ActivityPrincipal : AppCompatActivity() {
 
         } catch (e: IllegalStateException) {
            // android.util.Log.e("Console_Noise_Alert", "SecurityException: " + android.util.Log.getStackTraceString(e))
-            Toast.makeText(applicationContext,"Erro audio Recorder",Toast.LENGTH_SHORT).show()
+     //       Toast.makeText(applicationContext,"Erro audio Recorder",Toast.LENGTH_SHORT).show()
             stopRecorder()
             //startRecorder()
         }

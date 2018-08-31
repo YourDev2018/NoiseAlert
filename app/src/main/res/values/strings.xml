@@ -52,6 +52,14 @@
     <string name="principal_volume_ambiente">Environment noise</string>
     <string name="principal_sensibilidade_microfone">Sensibility of the mic</string>
 
+    <string name="em_desenvolvimento">In development to you</string>
+
+    <string name="settings_termos_de_uso">Terms of use</string>
+
+    <string name="termos_de_uso">
+
+
+</string>
 
 
 </resources>

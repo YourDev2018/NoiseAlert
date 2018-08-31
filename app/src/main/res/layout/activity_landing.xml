@@ -34,7 +34,7 @@
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/act_lading_contraint_bot"
-        android:layout_width="360dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/color_degrade_act_landing_background"
 

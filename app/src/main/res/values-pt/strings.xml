@@ -50,7 +50,9 @@ Noise Alert permite que você defina o limite do som de um ambiente, controlando
     <string name="principal_volume_ambiente">Volume ambiente</string>
     <string name="principal_sensibilidade_microfone">Sensibilidade do microfone</string>
 
+    <string name="em_desenvolvimento">Estamos desenvolvendo para você</string>
 
+    <string name="settings_termos_de_uso">Termos de uso</string>
 
 
 </resources>
