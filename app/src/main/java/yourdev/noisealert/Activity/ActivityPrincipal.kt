@@ -25,6 +25,8 @@ import android.os.Handler
 import android.os.Vibrator
 import android.support.v4.app.ActivityCompat
 import android.support.v4.view.ViewPager
+import android.telephony.PhoneStateListener
+import android.telephony.TelephonyManager
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -90,6 +92,9 @@ class ActivityPrincipal : AppCompatActivity() {
 
     var myNotification =  MyNotification()
     lateinit var notificationManager: NotificationManager
+
+    lateinit var telephonyManager: TelephonyManager
+    lateinit var listener: PhoneStateListener
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -272,6 +277,21 @@ class ActivityPrincipal : AppCompatActivity() {
         }
 
         runner.start()
+/*
+        telephonyManager =  getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        listener = object : PhoneStateListener() {
+            override fun onCallStateChanged(state: Int, incomingNumber: String) {
+                var stateString = "N/A"
+                when (state) {
+                    TelephonyManager.CALL_STATE_IDLE -> Log.i("PhoneStateNoiseAlert","Call_state_idle")
+                    TelephonyManager.CALL_STATE_OFFHOOK -> Log.i("PhoneStateNoiseAlert","CALL_STATE_OFFHOOK")
+                    TelephonyManager.CALL_STATE_RINGING -> Log.i("PhoneStateNoiseAlert","CALL_STATE_RINGING")
+                }
+
+            }
+        }
+
+  */
     }
 
     // Receive the permissions request result
