@@ -18,6 +18,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/act_termos_uso_click_return2"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/act_settings_return"
+            app:layout_constraintStart_toStartOf="@+id/act_settings_return"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/act_principal_text_view_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

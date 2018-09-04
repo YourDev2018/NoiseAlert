@@ -96,6 +96,7 @@ class ActivityPrincipal : AppCompatActivity() {
     lateinit var telephonyManager: TelephonyManager
     lateinit var listener: PhoneStateListener
 
+    lateinit var clickReturn : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -258,6 +259,10 @@ class ActivityPrincipal : AppCompatActivity() {
 
                     if (auxStop){
                         auxStop = false
+                        if (tempoDeToque ==0 || tempoDeToque == 1)
+                            tempoDeToque = 2
+
+                        Log.i("NoiseTime",tempoDeToque.toString())
                         Thread.sleep((tempoDeToque*1000 - 1000).toLong())
                         mPlayer = mp.pauseMusic(mPlayer)
                         vibrator = mp.pauseVibrator(vibrator)
@@ -277,6 +282,7 @@ class ActivityPrincipal : AppCompatActivity() {
         }
 
         runner.start()
+        clickReturn.setOnClickListener { startActivity(Intent(this, ActivitySettings::class.java)); finish()}
 /*
         telephonyManager =  getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         listener = object : PhoneStateListener() {
@@ -403,19 +409,22 @@ class ActivityPrincipal : AppCompatActivity() {
                         return
 
                     if (getVibrate()) {
-                        vibrator = mp.startVibrate(applicationContext, vibrator, (tempoDeToque * 1000).toLong())
+
 
                         val modoSom = getModoSom()
                         if(modoSom== "gravar") {
                             mPlayer = mp.playMusicWithInternalURI(applicationContext, mPlayer, externalCacheDir.absolutePath + "/noise_alert_music.3gp")
+                            vibrator = mp.startVibrate(applicationContext, vibrator, (tempoDeToque * 1000).toLong())
                         }
 
                         if (modoSom == "padrao"){
                             mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_padrao)
+                            vibrator = mp.startVibrate(applicationContext, vibrator, (tempoDeToque * 1000).toLong())
                         }
 
                         if (modoSom == "alternativa"){
                             mPlayer = mp.playMusic(applicationContext,mPlayer,R.raw.toque_alternativo)
+                            vibrator = mp.startVibrate(applicationContext, vibrator, (tempoDeToque * 1000).toLong())
                         }
 
 
@@ -542,6 +551,7 @@ class ActivityPrincipal : AppCompatActivity() {
         listCarousel = ArrayList()
         listCarousel = CarouselItens().createCarouselCinza(applicationContext,listCarousel)
         textAdapter = CarouselPicker.CarouselViewAdapter(applicationContext,listCarousel,0)
+        clickReturn = findViewById(R.id.act_principal_click_return)
 
         carouselPicker1.adapter = textAdapter
         gambiarra = findViewById(R.id.gambiarra_off)

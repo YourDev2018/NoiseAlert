@@ -11,7 +11,7 @@
 \n \n
 Noise Alert permite que você defina o limite do som de um ambiente, controlando pessoas ao seu redor.
     \n  \n
-    Gustavo Mota, fundador da WeDoLogos, foi o idealizador do app e a YourDev, foi a parceira que transformou a Ideia em um app.  </string>
+    Gustavo Mota, fundador da WeDoLogos, é o idealizador do app e a YourDev é a parceira que transformou a ideia em um app.  </string>
     <string name="activity_configuracoes_titulo">Configurações</string>
 
     <string name="activity_configuracoes_modo_som_titulo">Alarme selecionado </string>
@@ -53,6 +53,7 @@ Noise Alert permite que você defina o limite do som de um ambiente, controlando
     <string name="em_desenvolvimento">Estamos desenvolvendo para você</string>
 
     <string name="settings_termos_de_uso">Termos de uso</string>
+    <string name="version"> Versión: </string>
 
 
 </resources>

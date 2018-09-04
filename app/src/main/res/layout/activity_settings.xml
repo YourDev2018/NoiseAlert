@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#fff">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_principal_novo_top_bar_navigation"
@@ -40,6 +40,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="?attr/actionModeCloseDrawable" />
+
+        <TextView
+            android:id="@+id/act_settings_click_return"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/act_settings_return"
+            app:layout_constraintStart_toStartOf="@+id/act_settings_return"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -53,221 +62,221 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_principal_novo_top_bar_navigation"
-        >
-
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
-        android:background="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_principal_novo_top_bar_navigation">
-
+        app:layout_constraintTop_toBottomOf="@id/activity_principal_novo_top_bar_navigation">
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-
-            android:id="@+id/act_settings_contraint_modo__som"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/act_settings_constraint_ripple"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/activity_principal_novo_top_bar_navigation">
 
 
-            <TextView
-                android:id="@+id/act_settings_tv_modo_som"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/activity_configuracoes_modo_som_titulo"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
 
-            <TextView
-                android:id="@+id/act_settings_modo_som_subtitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_configuracoes_modo_som_subtitulo"
-                android:textColor="@color/act_settings_text_view_titulo"
-                app:layout_constraintStart_toStartOf="@+id/act_settings_tv_modo_som"
-                app:layout_constraintTop_toBottomOf="@+id/act_settings_tv_modo_som" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-
-            android:id="@+id/act_settings_constraint_vibrar"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:background="@drawable/act_settings_constraint_ripple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_tempo_toque">
-
-
-            <TextView
-                android:id="@+id/tv_vibrar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/activity_configuracoes_vibrar"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Switch
-                android:id="@+id/activity_settings_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:checked="true"
-                android:theme="@style/SwitchCompatStyle"
+                android:id="@+id/act_settings_contraint_modo__som"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/act_settings_constraint_ripple_no_margin"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_vibrar" />
-        </android.support.constraint.ConstraintLayout>
-
-
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-
-            android:id="@+id/act_settings_contraint_tempo_toque"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:background="@drawable/act_settings_constraint_ripple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_gravatar_toque">
-
-
-            <TextView
-                android:id="@+id/act_settings_tv_tempo_toque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/activity_configuracoes_duracao_alarme"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent">
 
 
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+                <TextView
+                    android:id="@+id/act_settings_tv_modo_som"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/activity_configuracoes_modo_som_titulo"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/act_settings_contraint_gravatar_toque"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:background="@drawable/act_settings_constraint_ripple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_buscar_toque">
+                <TextView
+                    android:id="@+id/act_settings_modo_som_subtitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_configuracoes_modo_som_subtitulo"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/act_settings_tv_modo_som"
+                    app:layout_constraintTop_toBottomOf="@+id/act_settings_tv_modo_som" />
+            </android.support.constraint.ConstraintLayout>
 
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
 
-            <TextView
-                android:id="@+id/act_settings_tv_gravar_toque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/activity_configuracoes_gravar_toque"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/act_settings_constraint_vibrar"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/act_settings_constraint_ripple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_tempo_toque">
 
 
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+                <TextView
+                    android:id="@+id/tv_vibrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/activity_configuracoes_vibrar"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/act_settings_contraint_buscar_toque"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:background="@drawable/act_settings_constraint_ripple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_modo__som">
+                <Switch
+                    android:id="@+id/activity_settings_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:checked="true"
+                    android:theme="@style/SwitchCompatStyle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_vibrar" />
+            </android.support.constraint.ConstraintLayout>
 
 
-            <TextView
-                android:id="@+id/act_settings_tv_buscar_toque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/activity_configuracoes_buscar_toque"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/act_settings_contraint_tempo_toque"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/act_settings_constraint_ripple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-
-            android:id="@+id/act_settings_contraint_sobre_nos"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:background="@drawable/act_settings_constraint_ripple"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/act_settings_constraint_vibrar">
+                app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_gravatar_toque">
 
 
-            <TextView
-                android:id="@+id/act_settings_tv_sobre_nos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/sobre_nos"
-                android:textColor="@color/act_settings_text_view_titulo"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                <TextView
+                    android:id="@+id/act_settings_tv_tempo_toque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/activity_configuracoes_duracao_alarme"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/act_settings_contraint_gravatar_toque"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/act_settings_constraint_ripple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_buscar_toque">
 
-<!--
+
+                <TextView
+                    android:id="@+id/act_settings_tv_gravar_toque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/activity_configuracoes_gravar_toque"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/act_settings_contraint_buscar_toque"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/act_settings_constraint_ripple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/act_settings_contraint_modo__som">
+
+
+                <TextView
+                    android:id="@+id/act_settings_tv_buscar_toque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/activity_configuracoes_buscar_toque"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+
+                android:id="@+id/act_settings_contraint_sobre_nos"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:background="@drawable/act_settings_constraint_ripple_doble_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/act_settings_constraint_vibrar">
+
+
+                <TextView
+                    android:id="@+id/act_settings_tv_sobre_nos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/sobre_nos"
+                    android:textColor="@color/act_settings_text_view_titulo"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
@@ -299,9 +308,20 @@
 -->
 
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/versao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/version"
+        android:textColor="@color/act_settings_text_view_titulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 

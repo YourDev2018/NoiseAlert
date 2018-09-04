@@ -8,9 +8,9 @@
 
     <string name="sobre_nos_subtitulo">Manage the environment noise</string>
 
-    <string name="sobre_nos_conteudo"> Noise Alert helps you controlling the noise in a variety os environments, as Classrooms, Libraries, Meeting Room and others.
-\n \nNoise Alert allows you define the limit of the audio in an environment and control people around you.
-        \n  \nGustavo Mota, Founder of WeDoLogos, was the idealist of the app and Your Dev was the partner who transformed the idea in an app. </string>
+    <string name="sobre_nos_conteudo"> Noise Alert helps you controlling the noise in a variety os environments, as Classrooms, Libraries, Meeting Rooms and others.
+\n \nNoise Alert allows you define the limit of the audio in an environment and control noise around you.
+        \n  \nGustavo Mota, founder of WeDoLogos, is the idealist of the app and Your Dev is the partner who transformed the idea in an app. </string>
     <string name="activity_configuracoes_titulo">Configurações</string>
 
     <string name="activity_configuracoes_modo_som_titulo">Selected Alert</string>
@@ -18,7 +18,7 @@
     <string name="activity_configuracoes_vibrar">Vibrate while Playing</string>
     <string name="activity_configuracoes_duracao_alarme">Alert Time</string>
     <string name="activity_configuracoes_buscar_toque">Search other alerts</string>
-    <string name="activity_configuracoes_gravar_toque">Record Alert</string>
+    <string name="activity_configuracoes_gravar_toque">Record an Alert</string>
 
     <string name="activity_configuracoes_modo_som_titulo_dialog">Select an Alert</string>
 
@@ -52,14 +52,12 @@
     <string name="principal_volume_ambiente">Environment noise</string>
     <string name="principal_sensibilidade_microfone">Sensibility of the mic</string>
 
-    <string name="em_desenvolvimento">In development to you</string>
+    <string name="em_desenvolvimento">We are still developing to you</string>
 
     <string name="settings_termos_de_uso">Terms of use</string>
 
-    <string name="termos_de_uso">
-
-
-</string>
+    <string name="termos_de_uso"> </string>
+    <string name="version"> Version: </string>
 
 
 </resources>

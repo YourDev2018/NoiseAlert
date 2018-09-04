@@ -2,6 +2,7 @@ package yourdev.noisealert.Class;
 
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -10,6 +11,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.content.Intent;
 import android.widget.RemoteViews;
@@ -27,6 +29,8 @@ public class MyNotification {
                 .setLargeIcon(BitmapFactory.decodeResource(Resources.getSystem(),R.drawable.logo_noise_alert))
                 .setColor(Color.parseColor("#fe5196"))
                 .setContentTitle(titulo)
+                .setChannelId(mId)
+
                 .setContentText(texto);
 
 
@@ -53,8 +57,21 @@ public class MyNotification {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
 
+
+
         if (mNotificationManager != null) {
               mNotificationManager.notify(id, notification.build());
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(mId,mId,NotificationManager.IMPORTANCE_DEFAULT);
+            mChannel.setSound(null,null);
+
+
+            if (mNotificationManager != null) {
+                mNotificationManager.createNotificationChannel(mChannel);
+            }
+
         }
 
         return mNotificationManager;

@@ -14,6 +14,7 @@ class Activity_Sobre_Nos : AppCompatActivity() {
     lateinit var returnSettingsTv:TextView
     lateinit var tituloTv:TextView
     lateinit var textSobreNos: TextView
+    lateinit var sobreNos: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class Activity_Sobre_Nos : AppCompatActivity() {
           //  startActivity(Intent(this, Activity_Principal::class.java))
             finish()
         }
+        sobreNos.setOnClickListener { finish() }
 
 
     }
@@ -36,6 +38,7 @@ class Activity_Sobre_Nos : AppCompatActivity() {
         tituloTv = findViewById(R.id.titulo_sobre_nos)
         returnSettingsTv = findViewById(R.id.act_principal_text_view_home)
         textSobreNos = findViewById(R.id.text_sobre_nos)
+        sobreNos = findViewById(R.id.act_sobre_nos_click_return)
     //    butConfig = findViewById(R.id.activity_principal_sobre_nos_config)
 
 

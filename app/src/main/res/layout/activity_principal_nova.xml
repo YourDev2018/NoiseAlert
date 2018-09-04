@@ -16,14 +16,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/act_principal_click_return"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/act_principal_nova_configuracoes"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
             android:background="@mipmap/ic_config"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/act_principal_text_view_home" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/act_principal_text_view_home"

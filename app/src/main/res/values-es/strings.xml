@@ -10,7 +10,7 @@
 
     <string name="sobre_nos_conteudo">Noise Alert lo ayuda a usted a controlar los ruidos en diversos ambientes como en las sala de clases, en biblioteca, salas de reunión y otro.
 \n \nNoise Alert permite que usted pueda definir el límite del sonido de su ambiente controlando el mismo que generan las personas a su alrededor.
-        \n  \nGustavo Mota es fundador de WeDologos, que fue el generador de la idea y el desarrollo de la app estuvo a cargo de Your Dev quienes transformaron la idea a una app. </string>
+        \n  \nGustavo Mota es fundador de WeDologos, que es el generador de la idea y el desarrollo de la app estuvo a cargo de Your Dev quienes transformaron la idea a una app. </string>
     <string name="activity_configuracoes_titulo">Configurações</string>
 
     <string name="activity_configuracoes_modo_som_titulo">Seleccione una alarma</string>
@@ -52,7 +52,7 @@
     <string name="principal_volume_ambiente">Volumen del ambiente</string>
     <string name="principal_sensibilidade_microfone">Sensibilidad del micrófono</string>
 
-    <string name="em_desenvolvimento">Todavía estamos desarrollando esa funcionalidad para usted</string>
+    <string name="em_desenvolvimento">Estamos todavía desarollando para usted</string>
 
     <string name="settings_termos_de_uso">Terminos de uso</string>
 

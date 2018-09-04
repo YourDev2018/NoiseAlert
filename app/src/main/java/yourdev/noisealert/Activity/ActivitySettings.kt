@@ -1,8 +1,10 @@
 package yourdev.noisealert.Activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.ImageFormat
@@ -88,9 +90,12 @@ class ActivitySettings : AppCompatActivity(){
     var tempoToque = 0
 
 
+    lateinit var click:TextView
+
+    lateinit var version: TextView
 
 
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -106,6 +111,8 @@ class ActivitySettings : AppCompatActivity(){
         constraintLayoutModoSom.setOnClickListener { dialogModoSom() }
         contraintSobreNos.setOnClickListener { sobreNos() }
 //        constraintTermosDeUso.setOnClickListener { termsOfUse() }
+
+        click.setOnClickListener { onBackPressed() }
 
         val modoSom = getModoSom()
 
@@ -141,6 +148,14 @@ class ActivitySettings : AppCompatActivity(){
         butReturn.setOnClickListener { onBackPressed() }
 
         switchVibrar.setOnClickListener{setSwitch()}
+
+
+        val aux = application.getText(R.string.version)
+        val aux2 = application.packageManager.getPackageInfo(packageName,0)
+        val versao = aux2.versionName
+        version.text = "$aux $versao"
+
+
 
 
     }
@@ -184,7 +199,8 @@ class ActivitySettings : AppCompatActivity(){
         textViewHome = findViewById(R.id.act_principal_text_view_home)
         textViewTempoToque = findViewById(R.id.act_settings_tv_tempo_toque)
       //  constraintTermosDeUso = findViewById(R.id.act_settings_contraint_termos_de_uso)
-
+        click = findViewById(R.id.act_settings_click_return)
+        version = findViewById(R.id.versao)
 
     }
 
@@ -1056,8 +1072,6 @@ class ActivitySettings : AppCompatActivity(){
 
     }
 
-
-
     private fun fonts() {
         val regular = Typeface.createFromAsset(assets, "roboto_regular.ttf")
         val medium = Typeface.createFromAsset(assets, "roboto_medium.ttf")
@@ -1070,6 +1084,7 @@ class ActivitySettings : AppCompatActivity(){
         textViewTempoToque.typeface = medium
         subTitulo.typeface = regular
         textViewHome.typeface = medium
+        version.typeface =regular
     }
 
 
